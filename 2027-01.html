@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>コースA：AWS資格（SAA）取得コース｜1月：Terraform実践①</title>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<div class="layout">
+  <aside class="sidebar">
+    <div class="brand">SES育成ロードマップ 2026年度</div>
+    <h1>コースA：AWS資格（SAA）取得コース</h1>
+    <span class="course-badge a">SAA取得を目指す</span>
+    <a class="back-index" href="index.html">← 目次（全7ヶ月）へ戻る</a>
+    <div class="nav-group-label">1月｜Terraform実践①</div>
+    <nav><a href="#w1"><span class="dot"></span>plan理解</a><a href="#w2"><span class="dot"></span>apply理解</a><a href="#w3"><span class="dot"></span>state管理①</a><a href="#w4"><span class="dot"></span>state管理②</a></nav>
+    <div class="prevnext"><a href="2026-12.html">← 12月</a><a href="2027-02.html">2月 →</a></div>
+    <div class="nav-group-label">全体の月一覧</div>
+    <nav class="month-nav"><a href="2026-09.html"><span class="dot"></span>9月｜OCI基礎</a><a href="2026-10.html"><span class="dot"></span>10月｜OCIネットワーク</a><a href="2026-11.html"><span class="dot"></span>11月｜Terraform入門①</a><a href="2026-12.html"><span class="dot"></span>12月｜Terraform入門②</a><a href="2027-01.html" class="current"><span class="dot"></span>1月｜Terraform実践①</a><a href="2027-02.html"><span class="dot"></span>2月｜Terraform実践②</a><a href="2027-03.html"><span class="dot"></span>3月｜SAA対策（模試・弱点演習）</a></nav>
+  </aside>
+  <main>
+    <div class="doc-header">
+      <div class="eyebrow">学習ロードマップ（詳細版）</div>
+      <h1>1月：Terraform実践①</h1>
+      <p class="sub">コースA：AWS資格（SAA）取得コース</p>
+      <p class="lead">コードでの構築に慣れてきたところで、Terraformの実践的な使い方を学びます。当初1ヶ月分だった「Terraform実践」の内容を1月・2月の2ヶ月に分け、前半にあたるこの1月に比重を置いて（1月：2月＝おおむね6：4）じっくり進めます。この月はplan/applyの読み方とstate管理を扱います。また、12月で座学ロードマップが一区切りついたことを受けて、この1月から並行タスクが「座学（インプット）」から「問題演習（アウトプット）」に切り替わります。1日20〜30分程度、分野別の演習問題を解きながら解説を読み込む形で進めます（この時間もメイン学習時間とは別枠の目安です。演習には後述の「SAA合格トレーニングシステム（開発予定）」を使用する予定です）。1月・2月の本体はTerraform実践（plan/apply・state管理）です。SAA演習によってTerraform実践の時間が圧迫される場合は、SAA演習量を減らすか、後述する2月の模試開始時期を後ろ倒ししてください。</p>
+      <p class="practical"><b>💼 この月で実務的にできるようになること：</b>terraform planの差分表示（+/-記号）の読み方と、applyでの実行・検証の流れを体に馴染ませたうえで、tfstateの中身とstate系コマンドの使い方を理解できるようになります。</p>
+    </div>
+
+    <div class="bb-guide" style="margin-bottom:32px;">
+      <div class="bb-guide-title">🧭 SAA合格トレーニングシステム（開発予定）</div>
+      <p class="bb-guide-intro">本ロードマップと連動した、SAA合格のためのオリジナル学習システムを構築予定です。<b>現時点ではまだ開発予定・構築中</b>で、すでに完成した問題バンクとして提供されているものではありません。単に問題を解いて終わりにするのではなく、「問題作成→内容・解説の検証→問題演習→解説による理解確認→弱点分析→弱点に応じた類題・補強問題→再演習」というサイクルを回しながら、AWSサービスの知識と、要件から適切な設計を選択する力を段階的に鍛えることを目指す仕組みです。開発はGPTとの対話・相談を活用しながら進める予定です（学習者自身がGPTを使う必要はありません）。</p>
+      <div class="bb-flow">
+        <span class="bb-step">問題作成</span><span class="bb-arrow">→</span>
+        <span class="bb-step">内容・解説の検証</span><span class="bb-arrow">→</span>
+        <span class="bb-step">問題演習</span><span class="bb-arrow">→</span>
+        <span class="bb-step">解説で理解確認</span><span class="bb-arrow">→</span>
+        <span class="bb-step">弱点分析</span><span class="bb-arrow">→</span>
+        <span class="bb-step">類題・補強問題</span><span class="bb-arrow">→</span>
+        <span class="bb-step">再演習</span>
+      </div>
+      <p class="bb-guide-intro" style="margin:14px 0 0;">1月はこのシステムの<b>最初の段階</b>として、分野別に「なぜ合っているか／なぜ違うか」を確認しながら理解を固めるフェーズに位置付けています。目的は本試験問題の再現ではなく、AWSサービスの役割の理解、似たサービスの比較、要件から適切な設計を選ぶ力を鍛えることです。</p>
+    </div>
+
+    <h2 class="section-title" id="glossary">📖 この月で出てくる用語</h2>
+    <table class="glossary">
+      <tr><th style="width:14%">用語</th><th style="width:28%">ひとことで言うと</th><th>もう少し詳しく</th></tr>
+      <tr><td class="term">plan / apply</td><td class="short">変更内容の予告 / 実際の適用</td><td>plan＝「これから何を作る/変えるか」の確認、apply＝実際に実行</td></tr><tr><td class="term">差分表示（+/-）</td><td class="short">planの結果に表示される追加・削除・変更の記号</td><td>「+」は新規作成、「-」は削除、「~」は変更を意味する</td></tr><tr><td class="term">state（ステート）</td><td class="short">Terraformが管理する「現在の状態」の記録</td><td>実際に作られたリソースの情報がtfstateファイルに記録される。壊すと復旧が大変なので取り扱い注意</td></tr>
+    </table>
+
+    <h2 class="section-title">週次タスク</h2>
+    
+    <div class="week" id="w1">
+      <div class="week-head"><span class="week-num">WEEK 01</span><span class="week-hours">目安 2.5h</span><h3>terraform planの理解（差分表示の読み方）</h3></div>
+      <div class="block">
+        <div class="block-label">🎯 このタスクのゴール</div>
+        <div class="goal-text">plan（予告）の差分表示（+/-記号）の読み方を、実際に手を動かして理解する。</div>
+      </div>
+      <div class="block">
+        <div class="block-label">📚 使う教材</div>
+        <ul class="materials"><li>Terraform公式CLIドキュメント <a href="https://developer.hashicorp.com/terraform/cli" target="_blank" rel="noopener">https://developer.hashicorp.com/terraform/cli</a></li></ul>
+      </div>
+      <div class="block">
+        <div class="block-label">🛠 具体的な手順</div>
+        <ol class="steps"><li>PowerShellを開き、作業用フォルダに <code class="inline">cd</code> で移動してから、以降の操作を行う。</li><li><code class="inline">terraform plan</code>を実行し、差分表示（+/-記号）の読み方を復習する。</li><li>コードを意図的に1行変更し（例：インスタンス名を変える）、再度<code class="inline">plan</code>で差分が正しく検出されることを確認する。</li><li><code class="inline">terraform validate</code>も合わせて実行し、文法エラーがないことを確認する習慣をつける。</li></ol>
+      </div>
+      <div class="block">
+        <div class="block-label">✅ 成果物</div>
+        <label class="deliverable" data-key="w1"><input type="checkbox"><span class="dtext"><span class="dnone">なし（planの差分確認と検証が完了条件）</span></span></label>
+        
+      </div>
+      <div class="block">
+        <div class="block-label">🧭 到達判定</div>
+        <div class="criteria-box"><ul><li>plan結果に表示される+/-記号がそれぞれ何を意味するか説明できる</li><li>コードを変更したとき、planで正しく差分を検出できる</li></ul></div>
+      </div>
+    <div class="block"><div class="block-label saa-label">📝 並行タスク：SAA-C03 問題演習ロードマップ（1日20〜30分目安）</div><div class="saa-block"><div class="saa-theme"><span class="saa-week-num">演習 Week 1</span>IAM・セキュリティ分野の演習</div><div class="saa-sub">進め方（1日20〜30分 × 週5〜6日ペース、合計目安2.5h）</div><ul class="saa-req"><li>9月・12月の座学（AWS基礎、IAM・セキュリティ、セキュリティ設計の深化）の範囲を中心に、分野別の演習問題を解く</li><li>正解・不正解にかかわらず、選択肢ひとつひとつについて「なぜ合っているか／なぜ違うか」を解説で確認する</li><li>理解があいまいな用語が出たら、その場で座学ロードマップの該当回に戻って復習する</li></ul><div class="saa-goal"><b>到達目標：</b>「なんとなく正解した」をなくし、選択肢ごとの正誤の根拠を自分の言葉で説明できる状態にする。</div><div class="saa-material">教材：SAA合格トレーニングシステム</div></div></div></div>
+    <div class="week" id="w2">
+      <div class="week-head"><span class="week-num">WEEK 02</span><span class="week-hours">目安 3h</span><h3>terraform applyの理解（実行と検証）</h3></div>
+      <div class="block">
+        <div class="block-label">🎯 このタスクのゴール</div>
+        <div class="goal-text">planで確認した変更を実際に適用し、意図した内容がOCI側に反映されることを検証する。</div>
+      </div>
+      <div class="block">
+        <div class="block-label">📚 使う教材</div>
+        <ul class="materials"><li>Terraform公式CLIドキュメント <a href="https://developer.hashicorp.com/terraform/cli" target="_blank" rel="noopener">https://developer.hashicorp.com/terraform/cli</a></li></ul>
+      </div>
+      <div class="block">
+        <div class="block-label">🛠 具体的な手順</div>
+        <ol class="steps"><li>PowerShellを開き、作業用フォルダに <code class="inline">cd</code> で移動してから、以降の操作を行う。</li><li>前週コードを1行変更した状態のまま、<code class="inline">terraform plan</code>で差分を再確認する。</li><li><code class="inline">terraform apply</code>を実行し、<code class="inline">yes</code>と入力して変更を適用する。</li><li>OCIコンソール（またはCLI）で、変更した内容（インスタンス名など）が実際に反映されていることを確認する。</li></ol>
+      </div>
+      <div class="block">
+        <div class="block-label">⚠️ つまずきやすいポイント</div>
+        <div class="warn-box"><ul><li><code class="inline">apply</code>はいきなり実行せず、必ず直前に<code class="inline">plan</code>で内容を確認してから実行する癖をつける。</li></ul></div>
+      </div>
+      <div class="block">
+        <div class="block-label">✅ 成果物</div>
+        <label class="deliverable" data-key="w2"><input type="checkbox"><span class="dtext"><span class="dnone">なし（applyの実行と反映内容の検証が完了条件）</span></span></label>
+        
+      </div>
+      <div class="block">
+        <div class="block-label">🧭 到達判定</div>
+        <div class="criteria-box"><ul><li>applyの前に必ずplanで内容を確認する理由を説明できる</li><li>適用した変更が実際にOCI側へ反映されていることを確認できる</li></ul></div>
+      </div>
+    <div class="block"><div class="block-label saa-label">📝 並行タスク：SAA-C03 問題演習ロードマップ（1日20〜30分目安）</div><div class="saa-block"><div class="saa-theme"><span class="saa-week-num">演習 Week 2</span>ネットワーク・高可用性分野の演習</div><div class="saa-sub">進め方（1日20〜30分 × 週5〜6日ペース、合計目安2.5h）</div><ul class="saa-req"><li>座学のVPC・ネットワーク①②、高可用性・DR、ネットワーク設計の深化の範囲を中心に、分野別の演習問題を解く</li><li>正解・不正解にかかわらず、選択肢ひとつひとつについて「なぜ合っているか／なぜ違うか」を解説で確認する</li><li>理解があいまいな用語が出たら、その場で座学ロードマップの該当回に戻って復習する</li></ul><div class="saa-goal"><b>到達目標：</b>Public/Private Subnet、NAT Gateway、Multi-AZ、RTO/RPOなど、ネットワークと可用性に関する典型的な選択問題を根拠つきで解けるようにする。</div><div class="saa-material">教材：SAA合格トレーニングシステム</div></div></div></div>
+    <div class="week" id="w3">
+      <div class="week-head"><span class="week-num">WEEK 03</span><span class="week-hours">目安 3h</span><h3>state管理①（tfstateの構造理解）</h3></div>
+      <div class="block">
+        <div class="block-label">🎯 このタスクのゴール</div>
+        <div class="goal-text">Terraformが「今何を管理しているか」の記録がどのように保存されているかを知る。</div>
+      </div>
+      <div class="block">
+        <div class="block-label">📚 使う教材</div>
+        <ul class="materials"><li>Terraform公式ドキュメント（State） <a href="https://developer.hashicorp.com/terraform/language/state" target="_blank" rel="noopener">https://developer.hashicorp.com/terraform/language/state</a></li></ul>
+      </div>
+      <div class="block">
+        <div class="block-label">🛠 具体的な手順</div>
+        <ol class="steps"><li>PowerShellを開き、作業用フォルダに <code class="inline">cd</code> で移動してから、以降の操作を行う。</li><li><code class="inline">terraform.tfstate</code>の中身をエディタで開いて構造（JSON形式）を確認する。</li><li><code class="inline">terraform state list</code>で管理対象のリソース一覧を表示する。</li></ol>
+      </div>
+      <div class="block">
+        <div class="block-label">⚠️ つまずきやすいポイント</div>
+        <div class="warn-box"><ul><li>tfstateには接続情報などの機密が平文で入ることがあるため、Gitには絶対に含めない（12月にすでに.gitignoreへ追加済みのはず）。</li></ul></div>
+      </div>
+      <div class="block">
+        <div class="block-label">✅ 成果物</div>
+        <label class="deliverable" data-key="w3"><input type="checkbox"><span class="dtext"><span class="dnone">なし（tfstateの中身確認とstate listの実行が完了条件）</span></span></label>
+        
+      </div>
+      <div class="block">
+        <div class="block-label">🧭 到達判定</div>
+        <div class="criteria-box"><ul><li>tfstateがJSON形式でどのような情報を保持しているか説明できる</li><li>tfstateをGit管理してはいけない理由を説明できる</li></ul></div>
+      </div>
+    <div class="block"><div class="block-label saa-label">📝 並行タスク：SAA-C03 問題演習ロードマップ（1日20〜30分目安）</div><div class="saa-block"><div class="saa-theme"><span class="saa-week-num">演習 Week 3</span>コンピューティング・ストレージ・DB分野の演習</div><div class="saa-sub">進め方（1日20〜30分 × 週5〜6日ペース、合計目安2.5h）</div><ul class="saa-req"><li>座学のコンピューティング、ストレージ、RDS・Aurora、DynamoDB・ElastiCacheの範囲を中心に、分野別の演習問題を解く</li><li>正解・不正解にかかわらず、選択肢ひとつひとつについて「なぜ合っているか／なぜ違うか」を解説で確認する</li><li>理解があいまいな用語が出たら、その場で座学ロードマップの該当回に戻って復習する</li></ul><div class="saa-goal"><b>到達目標：</b>EC2/Lambda/Elastic Beanstalk、S3/EBS/EFS、RDS/Aurora/DynamoDB/ElastiCacheの使い分けを、要件文から選択できるようにする。</div><div class="saa-material">教材：SAA合格トレーニングシステム</div></div></div></div>
+    <div class="week" id="w4">
+      <div class="week-head"><span class="week-num">WEEK 04</span><span class="week-hours">目安 2.5h</span><h3>state管理②（詳細確認とCLI突き合わせ）</h3></div>
+      <div class="block">
+        <div class="block-label">🎯 このタスクのゴール</div>
+        <div class="goal-text">個々のリソースの詳細を確認し、Terraformの記録と実際にOCI上に作られているリソースが一致していることを検証する。</div>
+      </div>
+      <div class="block">
+        <div class="block-label">📚 使う教材</div>
+        <ul class="materials"><li>Terraform公式ドキュメント（State） <a href="https://developer.hashicorp.com/terraform/language/state" target="_blank" rel="noopener">https://developer.hashicorp.com/terraform/language/state</a></li></ul>
+      </div>
+      <div class="block">
+        <div class="block-label">🛠 具体的な手順</div>
+        <ol class="steps"><li>PowerShellを開き、作業用フォルダに <code class="inline">cd</code> で移動してから、以降の操作を行う。</li><li><code class="inline">terraform state show &lt;resource&gt;</code>で特定リソースの詳細を確認する。</li><li><b>OCI CLIとも突き合わせる。</b> <code class="inline">oci compute instance list --compartment-id &lt;コンパートメントOCID&gt;</code>を実行し、<code class="inline">terraform state list</code>の内容と実際に作成されているリソースが一致していることを確認する。</li></ol>
+      </div>
+      <div class="block">
+        <div class="block-label">✅ 成果物</div>
+        <label class="deliverable" data-key="w4"><input type="checkbox"><span class="dtext"><span class="dnone">なし（state showとOCI CLIでの突き合わせ確認が完了条件）</span></span></label>
+        
+      </div>
+      <div class="block">
+        <div class="block-label">🧭 到達判定</div>
+        <div class="criteria-box"><ul><li>terraform stateの記録と実際のOCIリソースが一致していることを、CLIと突き合わせて確認できる</li></ul></div>
+      </div>
+    <div class="block"><div class="block-label saa-label">📝 並行タスク：SAA-C03 問題演習ロードマップ（1日20〜30分目安）</div><div class="saa-block"><div class="saa-theme"><span class="saa-week-num">演習 Week 4</span>アプリケーション統合・コスト最適化・運用分野の演習</div><div class="saa-sub">進め方（1日20〜30分 × 週5〜6日ペース、合計目安2.5h）</div><ul class="saa-req"><li>座学のアプリケーション統合、高性能・サーバーレス・コンテナ、コスト最適化、サーバーレス・疎結合アーキテクチャ、監視・運用の範囲を中心に、分野別の演習問題を解く</li><li>正解・不正解にかかわらず、選択肢ひとつひとつについて「なぜ合っているか／なぜ違うか」を解説で確認する</li><li>理解があいまいな用語が出たら、その場で座学ロードマップの該当回に戻って復習する</li></ul><div class="saa-goal"><b>到達目標：</b>SQS/SNS/EventBridge、コスト最適化の選択肢、CloudWatch/CloudTrail/Configなど、1月に扱った以外の残りの分野を一通り演習でカバーする。</div><div class="saa-material">教材：SAA合格トレーニングシステム</div></div></div>
+    </div>
+
+    <footer>
+      2026年度 SESインフラエンジニア育成ロードマップ（コースA：AWS資格（SAA）取得コース）｜チェックボックスの状態はこのブラウザに保存され、次回このページを開いたときも復元されます（進捗管理はPlannerで行ってください）
+    </footer>
+  </main>
+</div>
+<script>
+(function() {
+  const STORAGE_KEY = 'roadmap-checklist:courseA-2027-01';
+  let storageAvailable = true;
+  let saved = {};
+  try {
+    const raw = window.localStorage.getItem(STORAGE_KEY);
+    saved = raw ? JSON.parse(raw) : {};
+  } catch (e) {
+    storageAvailable = false;
+  }
+
+  function persist() {
+    if (!storageAvailable) return;
+    try {
+      window.localStorage.setItem(STORAGE_KEY, JSON.stringify(saved));
+    } catch (e) {
+      storageAvailable = false;
+    }
+  }
+
+  const boxes = document.querySelectorAll('.deliverable input[type=checkbox]');
+  boxes.forEach(b => {
+    const label = b.closest('.deliverable');
+    const key = label ? label.getAttribute('data-key') : null;
+    if (key && saved[key]) {
+      b.checked = true;
+      label.classList.add('done');
+    }
+    b.addEventListener('change', () => {
+      label.classList.toggle('done', b.checked);
+      if (key) {
+        if (b.checked) {
+          saved[key] = true;
+        } else {
+          delete saved[key];
+        }
+        persist();
+      }
+    });
+  });
+})();
+</script>
+</body>
+</html>
