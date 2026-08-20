@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>コースA：AWS資格（SAA）取得コース｜3月：SAA対策（模試・弱点演習）</title>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<div class="layout">
+  <aside class="sidebar">
+    <div class="brand">SES育成ロードマップ 2026年度</div>
+    <h1>コースA：AWS資格（SAA）取得コース</h1>
+    <span class="course-badge a">SAA取得を目指す</span>
+    <a class="back-index" href="index.html">← 目次（全7ヶ月）へ戻る</a>
+    <div class="nav-group-label">3月｜SAA対策（模試・弱点演習）</div>
+    <nav><a href="#w1"><span class="dot"></span>模試③＋徹底復習</a><a href="#w2"><span class="dot"></span>弱点演習＋模試④</a><a href="#w3"><span class="dot"></span>模試⑤＋誤答分析</a><a href="#w4"><span class="dot"></span>総仕上げ・直前対策</a></nav>
+    <div class="prevnext"><a href="2027-02.html">← 2月</a><a class="disabled">次の月 →</a></div>
+    <div class="nav-group-label">全体の月一覧</div>
+    <nav class="month-nav"><a href="2026-09.html"><span class="dot"></span>9月｜OCI基礎</a><a href="2026-10.html"><span class="dot"></span>10月｜OCIネットワーク</a><a href="2026-11.html"><span class="dot"></span>11月｜Terraform入門①</a><a href="2026-12.html"><span class="dot"></span>12月｜Terraform入門②</a><a href="2027-01.html"><span class="dot"></span>1月｜Terraform実践①</a><a href="2027-02.html"><span class="dot"></span>2月｜Terraform実践②</a><a href="2027-03.html" class="current"><span class="dot"></span>3月｜SAA対策（模試・弱点演習）</a></nav>
+  </aside>
+  <main>
+    <div class="doc-header">
+      <div class="eyebrow">学習ロードマップ（詳細版）</div>
+      <h1>3月：SAA対策（模試・弱点演習）</h1>
+      <p class="sub">コースA：AWS資格（SAA）取得コース</p>
+      <p class="lead">9月〜12月の座学ロードマップ、1月・2月の分野別／ランダム問題演習で身につけた知識を、模擬試験3〜4回を通じて得点に結びつける総仕上げの月です。模試を解く時間そのものより、<b>解いたあとの復習（誤答分析・弱点演習）に多くの時間を使う</b>ことを重視した配分にしています。模試・問題演習には「SAA合格トレーニングシステム」を使用予定です。2027年3月受験はあくまで目標・チェックポイントです。インフラエンジニア育成としての実践スキル習得を優先し、負荷が大きい場合は模試のペースを緩めたり、受験時期そのものを後ろ倒ししても構いません。</p>
+      <p class="practical"><b>💼 この月で実務的にできるようになること：</b>模擬試験の結果を分野別に分析して弱点を特定し、ピンポイントで復習・演習することで、本番の得点を安定させる一連の「復習サイクル」を自分の手で回せるようになります。</p>
+    </div>
+
+    <h2 class="section-title" id="glossary">📖 この月で出てくる用語</h2>
+    <table class="glossary">
+      <tr><th style="width:14%">用語</th><th style="width:28%">ひとことで言うと</th><th>もう少し詳しく</th></tr>
+      <tr><td class="term">模擬試験（模試）</td><td class="short">本番形式で解く練習問題</td><td>時間を計って解くことで、本番の時間配分の感覚もつかむ</td></tr><tr><td class="term">誤答分析</td><td class="short">間違えた問題を掘り下げる作業</td><td>正解を覚え直すだけでなく、「なぜ他の選択肢が誤りか」まで理由を説明できる状態にする</td></tr><tr><td class="term">たまたま正解</td><td class="short">理由を説明できないが正解した問題</td><td>消去法や勘で正解しただけの問題。放置すると本番で同系統の問題を落とす原因になる</td></tr><tr><td class="term">弱点分野</td><td class="short">模擬試験で正答率が低かった分野</td><td>限られた時間の中で優先的に復習すべき範囲</td></tr>
+    </table>
+
+    <div class="bb-guide" style="margin-bottom:32px;">
+      <div class="bb-guide-title">🔗 3月の学習の流れ（Week 1 → Week 4）</div>
+      <p class="bb-guide-intro" style="margin-bottom:14px;">3月は、模試の結果を次の週にそのまま持ち越していく4週間です。特に<b>Week 1で特定した弱点分野3つは、そのままWeek 2で重点的に演習する内容になります</b>。「SAA合格トレーニングシステム」の<b>総仕上げフェーズ</b>として、模試結果から弱点を分析し、その弱点に対して補強問題・類題で演習する、という考え方をこの4週間に反映する予定です。</p>
+      <div class="bb-flow">
+        <span class="bb-step">WEEK 1：模試③→弱点3分野を特定</span><span class="bb-arrow">→</span>
+        <span class="bb-step">WEEK 2：弱点3分野を演習→模試④</span><span class="bb-arrow">→</span>
+        <span class="bb-step">WEEK 3：模試⑤→誤答分析</span><span class="bb-arrow">→</span>
+        <span class="bb-step">WEEK 4：弱点総仕上げ・模試⑥（任意）→受験直前対策</span>
+      </div>
+    </div>
+
+    <h2 class="section-title">週次タスク</h2>
+    
+    <div class="week" id="w1">
+      <div class="week-head"><span class="week-num">WEEK 01</span><span class="week-hours">目安 6h</span><span class="week-hours">➡ 弱点分野はWeek 2で活用</span><h3>模試③実施＋徹底復習</h3></div>
+      <div class="block">
+        <div class="block-label">🎯 このタスクのゴール</div>
+        <div class="goal-text">本番同様の制限時間で模試を1回解き、正誤にかかわらずすべての設問を復習して、現時点の弱点を可視化する。</div>
+      </div>
+      <div class="block">
+        <div class="block-label">📚 使う教材</div>
+        <ul class="materials"><li>模擬試験：SAA合格トレーニングシステム</li></ul>
+      </div>
+      <div class="block">
+        <div class="block-label">🛠 具体的な手順</div>
+        <ol class="steps"><li>模試③を本番同様に時間を計って解く（制限時間・問題数は教材に準拠する）。</li><li>採点し、分野別（IAM／ネットワーク／ストレージ／DB／コンピューティング等）の正答率を記録する。</li><li>不正解だった問題を1問ずつ復習する。「なぜ正解の選択肢が正しいか」だけでなく、<b>「なぜ他の選択肢が誤りか」</b>まで解説で確認する。</li><li>正解だった問題も見直し、消去法や勘で「たまたま正解した」ものがないか確認する。該当する問題があれば復習リストに追加する。</li><li>正答率が低かった弱点分野を3つ書き出し、翌週の演習に持ち越す。</li></ol>
+      </div>
+      <div class="block">
+        <div class="block-label">⚠️ つまずきやすいポイント</div>
+        <div class="warn-box"><ul><li>模試を解く時間よりも復習にかける時間の方が長くなるのが普通。目安として、解答2時間＋復習4時間程度を想定しておく。</li><li>「正解だったから復習しなくていい」と思いがちだが、理由を説明できない正解ほど本番で落としやすいので必ず見直す。</li></ul></div>
+      </div>
+      <div class="block">
+        <div class="block-label">✅ 成果物</div>
+        <label class="deliverable" data-key="w1"><input type="checkbox"><span class="dtext">分野別正答率メモ・弱点分野リスト（study-notesリポジトリに保存）</span></label>
+        
+      </div>
+      <div class="block">
+        <div class="block-label">🧭 到達判定</div>
+        <div class="criteria-box"><ul><li>分野別の正答率をもとに、自分の弱点分野を3つ挙げられる</li><li>不正解の問題だけでなく「たまたま正解」した問題も見直す理由を説明できる</li></ul></div>
+      </div>
+    </div>
+    <div class="bb-rule">⬇ Week 1で特定した弱点分野3つを、Week 2で重点的に演習します</div>
+    <div class="week" id="w2">
+      <div class="week-head"><span class="week-num">WEEK 02</span><span class="week-hours">目安 6h</span><span class="week-hours">⬅ Week 1の続き</span><h3>弱点分野のピンポイント演習＋模試④</h3></div>
+      <div class="block">
+        <div class="block-label">🎯 このタスクのゴール</div>
+        <div class="goal-text">week1で洗い出した弱点分野を重点的に演習し、その状態で2回目の模試に臨む。</div>
+      </div>
+      <div class="block">
+        <div class="block-label">📚 使う教材</div>
+        <ul class="materials"><li>分野別演習・模擬試験：SAA合格トレーニングシステム</li></ul>
+      </div>
+      <div class="block">
+        <div class="block-label">🛠 具体的な手順</div>
+        <ol class="steps"><li>week1で書き出した弱点分野3つについて、分野別の演習問題を集中的に解く。</li><li>演習を通じて理解があいまいだった用語・サービスをリストにまとめ直す。</li><li>模試④を本番同様に時間を計って解く。</li><li>採点し、week1との正答率の変化を分野別に比較する。</li></ol>
+      </div>
+      <div class="block">
+        <div class="block-label">✅ 成果物</div>
+        <label class="deliverable" data-key="w2"><input type="checkbox"><span class="dtext">弱点分野の演習メモ、模試③→④の正答率比較表</span></label>
+        
+      </div>
+      <div class="block">
+        <div class="block-label">🧭 到達判定</div>
+        <div class="criteria-box"><ul><li>week1で特定した弱点分野について、演習を通じて理解が深まったか自分で判断できる</li><li>模試③→④の正答率の変化を分野別に比較できる</li></ul></div>
+      </div>
+    </div>
+    <div class="week" id="w3">
+      <div class="week-head"><span class="week-num">WEEK 03</span><span class="week-hours">目安 6.5h</span><h3>模試⑤実施＋誤答徹底分析</h3></div>
+      <div class="block">
+        <div class="block-label">🎯 このタスクのゴール</div>
+        <div class="goal-text">3回目の模試で本番に近い緊張感に慣れつつ、誤答分析の精度をさらに上げる。</div>
+      </div>
+      <div class="block">
+        <div class="block-label">📚 使う教材</div>
+        <ul class="materials"><li>模擬試験：SAA合格トレーニングシステム</li></ul>
+      </div>
+      <div class="block">
+        <div class="block-label">🛠 具体的な手順</div>
+        <ol class="steps"><li>模試⑤を本番同様に時間を計って解く。</li><li>採点し、これまでの模試（③④）との正答率の推移を分野別に比較する。</li><li>不正解だった問題・たまたま正解した問題の両方を復習し、解説を読み込む。</li><li>まだ残っている弱点分野を書き出し、優先順位をつける。</li></ol>
+      </div>
+      <div class="block">
+        <div class="block-label">✅ 成果物</div>
+        <label class="deliverable" data-key="w3"><input type="checkbox"><span class="dtext">模試⑤の正答率・推移メモ、優先復習リスト</span></label>
+        
+      </div>
+      <div class="block">
+        <div class="block-label">🧭 到達判定</div>
+        <div class="criteria-box"><ul><li>3回分の模試の推移から、残っている弱点分野に優先順位をつけられる</li></ul></div>
+      </div>
+    </div>
+    <div class="week" id="w4">
+      <div class="week-head"><span class="week-num">WEEK 04</span><span class="week-hours">目安 6.5h</span><h3>弱点演習の総仕上げ・模試⑥（任意）・受験直前対策</h3></div>
+      <div class="block">
+        <div class="block-label">🎯 このタスクのゴール</div>
+        <div class="goal-text">残っている弱点分野を最終確認し、模試の得点が安定してきた状態で受験当日を迎える準備をする。</div>
+      </div>
+      <div class="block">
+        <div class="block-label">📊 受験を検討する目安</div>
+        <div class="goal-text">模試③は現状把握が目的で、点数そのものを合否判定には使わない。模試④で弱点分野が改善しているかを確認し、模試⑤で<b>合格圏に安定して到達しているか</b>を確認する。複数回の模試で安定して高い正答率を取れていることが、受験を検討する一つの目安になる。模試⑤までで弱点分野がすでに明確になっている場合は、模試⑥を追加すること自体を目的にせず、弱点復習を優先してよい。なお、模試の正答率はあくまで学習上の目安であり、AWS公式のスケールドスコアによる合否判定と一致するものではない。<b>3月末までに合格圏に届いていない場合は、無理に3月中の受験にこだわる必要はない。</b>インフラエンジニアとしての実践スキル習得を優先する方針のもと、受験日を4月以降に後ろ倒しし、引き続き余力の範囲で弱点演習を続ける選択肢も取ってよい。</div>
+      </div>
+      <div class="block">
+        <div class="block-label">📚 使う教材</div>
+        <ul class="materials"><li>模擬試験：SAA合格トレーニングシステム・これまでのstudy-notesメモ一式</li><li>AWS認定公式サイト（受験予約・当日の流れの確認）</li></ul>
+      </div>
+      <div class="block">
+        <div class="block-label">🛠 具体的な手順</div>
+        <ol class="steps"><li>残っている弱点分野を最終演習で復習する。</li><li>ここまで3回の模試で得点が安定してきていれば必須ではないが、余裕があれば模試⑥を実施し、伸びを確認する。</li><li>試験当日の持ち物・受験環境（オンライン監督試験の場合は部屋の片付けや身分証の準備など）を確認する。</li><li>AWS認定の公式サイトから受験日程を確定する（未予約の場合）。</li></ol>
+      </div>
+      <div class="block">
+        <div class="block-label">⚠️ つまずきやすいポイント</div>
+        <div class="warn-box"><ul><li>直前になるほど新しい範囲に手を広げたくなるが、点数の安定にはすでに解いた模試の復習を優先する方が効果的。</li></ul></div>
+      </div>
+      <div class="block">
+        <div class="block-label">✅ 成果物</div>
+        <label class="deliverable" data-key="w4"><input type="checkbox"><span class="dtext">受験直前チェックリスト</span></label>
+        
+      </div>
+      <div class="block">
+        <div class="block-label">🧭 到達判定</div>
+        <div class="criteria-box"><ul><li>受験に向けて残っている弱点分野と、当日の準備事項を整理できている</li></ul></div>
+      </div>
+    </div>
+
+    <footer>
+      2026年度 SESインフラエンジニア育成ロードマップ（コースA：AWS資格（SAA）取得コース）｜チェックボックスの状態はこのブラウザに保存され、次回このページを開いたときも復元されます（進捗管理はPlannerで行ってください）
+    </footer>
+  </main>
+</div>
+<script>
+(function() {
+  const STORAGE_KEY = 'roadmap-checklist:courseA-2027-03';
+  let storageAvailable = true;
+  let saved = {};
+  try {
+    const raw = window.localStorage.getItem(STORAGE_KEY);
+    saved = raw ? JSON.parse(raw) : {};
+  } catch (e) {
+    storageAvailable = false;
+  }
+
+  function persist() {
+    if (!storageAvailable) return;
+    try {
+      window.localStorage.setItem(STORAGE_KEY, JSON.stringify(saved));
+    } catch (e) {
+      storageAvailable = false;
+    }
+  }
+
+  const boxes = document.querySelectorAll('.deliverable input[type=checkbox]');
+  boxes.forEach(b => {
+    const label = b.closest('.deliverable');
+    const key = label ? label.getAttribute('data-key') : null;
+    if (key && saved[key]) {
+      b.checked = true;
+      label.classList.add('done');
+    }
+    b.addEventListener('change', () => {
+      label.classList.toggle('done', b.checked);
+      if (key) {
+        if (b.checked) {
+          saved[key] = true;
+        } else {
+          delete saved[key];
+        }
+        persist();
+      }
+    });
+  });
+})();
+</script>
+</body>
+</html>
