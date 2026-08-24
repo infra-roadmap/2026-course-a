@@ -14,7 +14,7 @@
     <span class="course-badge a">SAA取得を目指す</span>
     <a class="back-index" href="index.html">← 目次（全7ヶ月）へ戻る</a>
     <div class="nav-group-label">9月｜OCI基礎</div>
-    <nav><a href="#blackbelt-guide"><span class="dot"></span>Black Beltの使い方</a><a href="#w1"><span class="dot"></span>アカウント作成</a><a href="#w2"><span class="dot"></span>IAM・Compartments</a><a href="#w3"><span class="dot"></span>VCN・Compute</a><a href="#w4"><span class="dot"></span>AWS対比整理</a></nav>
+    <nav><a href="#blackbelt-guide"><span class="dot"></span>Black Beltの使い方</a><a href="#cp-branch"><span class="dot"></span>AWS基礎の確認（分岐）</a><a href="#w1"><span class="dot"></span>アカウント作成</a><a href="#w2"><span class="dot"></span>IAM・Compartments</a><a href="#w3"><span class="dot"></span>VCN・Compute</a><a href="#w4"><span class="dot"></span>AWS対比整理</a></nav>
     <div class="prevnext"><a class="disabled">← 前の月</a><a href="2026-10.html">10月 →</a></div>
     <div class="nav-group-label">全体の月一覧</div>
     <nav class="month-nav"><a href="2026-09.html" class="current"><span class="dot"></span>9月｜OCI基礎</a><a href="2026-10.html"><span class="dot"></span>10月｜OCIネットワーク</a><a href="2026-11.html"><span class="dot"></span>11月｜Terraform入門①</a><a href="2026-12.html"><span class="dot"></span>12月｜Terraform入門②</a><a href="2027-01.html"><span class="dot"></span>1月｜Terraform実践①</a><a href="2027-02.html"><span class="dot"></span>2月｜Terraform実践②</a><a href="2027-03.html"><span class="dot"></span>3月｜SAA対策（模試・弱点演習）</a></nav>
@@ -30,82 +30,8 @@
 
     <h2 class="section-title" id="blackbelt-guide">📘 Black Beltの使い方（座学ロードマップ 共通ルール）</h2>
     <div class="bb-guide">
-      <p class="bb-guide-intro">AWS Black Beltは、SAA学習の<b>主教材ではありません</b>。主教材はAWS Skill Builderで、Black Beltは「Skill Builderだけでは理解できなかった部分」を補強するための<b>補助教材</b>です。全講座・全動画を視聴する必要はなく、Weekごとに設定された重要度（原則不要／必要なら／推奨／かなり推奨）に沿って、必要な範囲だけ使います。</p>
-
-      <div class="bb-flow">
-        <span class="bb-step">① Skill Builderで学習</span><span class="bb-arrow">→</span>
-        <span class="bb-step">② 自分の言葉で説明できるか確認</span><span class="bb-arrow">→</span>
-        <span class="bb-step">③ 説明できなければBlack Belt</span><span class="bb-arrow">→</span>
-        <span class="bb-step">④ まずPDFを確認</span><span class="bb-arrow">→</span>
-        <span class="bb-step">⑤ それでも理解できなければ動画</span><span class="bb-arrow">→</span>
-        <span class="bb-step">⑥ もう一度自分の言葉で説明</span><span class="bb-arrow">→</span>
-        <span class="bb-step">⑦ 理解できたら問題演習へ</span>
-      </div>
-
-      <h3 class="bb-h3">Black Beltの探し方</h3>
-      <div class="bb-rule">AWS公式の「AWS Black Belt Online Seminar」を対象に、学習中のサービス名＋「Black Belt」で検索する（例：「Amazon VPC Black Belt」「NAT Gateway Black Belt」「Amazon DynamoDB Black Belt」「Amazon SQS Black Belt」）。検索結果は必ずAWS公式のコンテンツを利用する。該当するPDFが見つかったらまずPDFを確認し、PDFだけで理解できなければ動画を利用する。</div>
-
-      <h3 class="bb-h3">重要度4段階と、実際に取るべき行動</h3>
-      <div class="bb-levels">
-        <div class="bb-level-card">
-          <div class="bb-level-head"><span class="bb-level none">原則不要</span></div>
-          <p>Skill Builderだけで進める。ただし学習していて理解できない部分が出てきたら、そこだけBlack Beltを見てよい（無理に避ける必要はない）。</p>
-        </div>
-        <div class="bb-level-card">
-          <div class="bb-level-head"><span class="bb-level optional">必要なら</span></div>
-          <p>Skill Builder終了後、内容を自分の言葉で説明できるか確認する。説明できなければBlack Beltを参照する。まずはPDFから。</p>
-        </div>
-        <div class="bb-level-card">
-          <div class="bb-level-head"><span class="bb-level recommend">推奨</span></div>
-          <p>Skill Builder終了後、Black Belt PDFで該当テーマを一通り確認しておく。すでに十分理解できている場合は、無理に視聴しなくてよい。</p>
-        </div>
-        <div class="bb-level-card">
-          <div class="bb-level-head"><span class="bb-level strong">かなり推奨</span></div>
-          <p>理解を深めるため、Black Belt PDFの該当テーマを積極的に確認する。ただし、Skill Builderの時点で十分理解できている箇所は読み飛ばしてよい。PDFだけで仕組みや通信の流れが頭に入らなければ、動画も利用する。</p>
-        </div>
-      </div>
-
-      <h3 class="bb-h3">PDFと動画、どちらを使うか</h3>
-      <div class="bb-usecase">
-        <div class="bb-usecase-box">
-          <div class="bb-usecase-label">📄 PDFを使うケース</div>
-          <ul>
-            <li>特定の用語・機能だけ確認したい</li>
-            <li>サービスの全体像を短時間で確認したい</li>
-            <li>構成図を見ながら理解したい</li>
-            <li>ピンポイントで補強したい</li>
-          </ul>
-        </div>
-        <div class="bb-usecase-box">
-          <div class="bb-usecase-label">🎥 動画を使うケース</div>
-          <ul>
-            <li>サービスの仕組みがイメージできない</li>
-            <li>通信やデータの流れが理解できない</li>
-            <li>アーキテクチャが頭に入らない</li>
-            <li>PDFを読んでも理解が曖昧なまま</li>
-          </ul>
-        </div>
-      </div>
-      <div class="bb-rule">基本方針：PDF → 必要なら動画（Black Beltを最初から最後まで視聴する必要はありません）</div>
-
-      <h3 class="bb-h3">具体例：SAA Week 3（VPC）の場合</h3>
-      <div class="bb-example">
-        <div class="bb-example-label">Black Beltの目的は「動画を見ること」ではなく「SAA問題で設計判断できるレベルまで理解すること」</div>
-        <ol>
-          <li>Skill BuilderでVPC、Subnet、Route Table、Internet Gateway、NAT Gateway、Security Group、NACLを学習する。</li>
-          <li>「Private Subnetから外部へ出る場合、なぜNAT Gatewayが必要なのか？」を自分の言葉で説明してみる。</li>
-          <li>説明できなければ、VPC関連のBlack Beltを参照する。</li>
-          <li>まずPDFの構成図で通信経路を確認する。</li>
-          <li>それでも理解できなければ、動画で仕組みを確認する。</li>
-          <li>もう一度、自分の言葉で説明できるか確認する。</li>
-          <li>SAA問題を解く。「Private Subnet上のEC2からS3へ、インターネットを経由せずアクセスしたい」のような要件に対して、VPC Endpointを選択できるか確認する。</li>
-        </ol>
-        <div class="bb-example-note">この週はSAA Week 3のBlack Belt案内でも「かなり推奨」に設定されています（詳細は後述のSAA Week 3を参照）。</div>
-      </div>
-
-      <h3 class="bb-h3">学習時間の考え方</h3>
-      <p class="bb-guide-intro" style="margin-bottom:0;">通常は<b>週1〜1.5時間程度</b>。Black Beltを使う週は、その時間に<b>+15〜30分程度を追加</b>する目安です（吸収するのではなく、上乗せです）。ただし、全講座・全動画を視聴するわけではなく「理解できなかった部分だけ」使うため、この上乗せが大幅に膨らむことはありません。各Weekの具体的な上乗せ時間は、そのWeekの「学習内容」の表と、下の「Black Belt: ◯◯」の案内に記載しています。</p>
-      <p class="bb-guide-intro" style="margin:14px 0 0;">この週1〜1.5時間程度という時間は、<b>各月のメイン学習（OCI／Terraformなど）の目安時間とは別枠</b>で確保する時間です。メイン学習の時間の中に含まれているわけではありません。また、これはあくまで取り組み量の目安であり、「必ずこの時間内に終わらせる」という制限時間ではありません。理解を優先し、状況に応じて2時間程度かかっても問題ありません。</p>
+      <p class="bb-guide-intro">Black Beltは、各週のAWSサービス・技術テーマを補足するための教材です。必要な範囲を資料（PDF）中心に確認し、より詳しく学びたい場合は動画も活用してください。</p>
+      <p class="bb-guide-intro" style="margin-top:10px;">※ArchivedのBlack Beltは基礎・概念理解を目的に使用しています。最新の仕様・料金等についてはAWS公式ドキュメントを確認してください。</p>
     </div>
 
     <h2 class="section-title" id="glossary">📖 この月で出てくる用語</h2>
@@ -116,6 +42,16 @@
 
     <h2 class="section-title">週次タスク</h2>
     
+    <h2 class="section-title" id="cp-branch">🧭 AWS基礎の確認（Cloud Practitioner取得者との分岐）</h2>
+    <div class="bb-guide">
+      <div class="bb-guide-title">📘 Technical Essentials を受講するかどうかの分岐</div>
+      <p class="bb-guide-intro"><b>AWS Certified Cloud Practitioner を取得済みの方：</b>AWSの基本概念・主要サービスの基礎はすでに一定程度習得している前提とするため、<b>AWS Technical Essentials は原則スキップ</b>してよい。Week 1から直接、下記のSAA-C03座学ロードマップを開始する。AWS基礎に不安が残る部分だけ、下のTechnical Essentialsを復習教材として部分的に利用してよい。</p>
+      <p class="bb-guide-intro"><b>Cloud Practitioner未取得、またはAWS基礎に不安がある方：</b>SAA座学を始める前に、まず下記のAWS Technical Essentialsを一通り受講してから、Week 1（AWS基礎・設計思想）に進む。</p>
+      <div class="block">
+        <div class="block-label">📚 AWS Technical Essentials（導入教材・目安 約5時間）</div>
+        <ul class="materials"><li><a href="https://skillbuilder.aws/learn/K8C2FNZM6X/aws-technical-essentials-/PG9A5GNNDB" target="_blank" rel="noopener">AWS Technical Essentials を開く</a>（AWS Skill Builder・導入教材）— AWSのグローバルインフラ、責任共有モデル、EC2／S3／VPC／RDS等の主要サービスの全体像を学ぶ入門コース</li></ul>
+      </div>
+    </div>
     <div class="week" id="w1">
       <div class="week-head"><span class="week-num">WEEK 01</span><span class="week-hours">目安 4h</span><h3>OCIアカウント作成、全体像の把握</h3></div>
       <div class="block">
@@ -143,7 +79,7 @@
         <div class="block-label">🧭 到達判定</div>
         <div class="criteria-box"><ul><li>OCIコンソールにログインし、テナンシー名・ユーザーOCID・Home Regionを自分で確認できる</li><li>Always Free枠の範囲内であれば課金が発生しない理由を説明できる</li></ul></div>
       </div>
-    <div class="block"><div class="block-label saa-label">📘 並行タスク：SAA-C03 座学ロードマップ（基本1〜1.5h、Black Belt週は最大2h程度が目安）</div><div class="saa-block"><div class="saa-theme"><span class="saa-week-num">Week 1</span>AWS基礎・設計思想</div><table class="saa-breakdown"><tr><th style="width:64px">時間配分</th><th>学習内容</th></tr><tr><td class="time">30分</td><td>Region／Availability Zone／AWSグローバルインフラ／責任共有モデル／Well-Architected Framework</td></tr><tr><td class="time">25分</td><td>設計思想：セキュリティ／信頼性／パフォーマンス効率／コスト最適化</td></tr></table><div class="saa-sub">比較・判断軸（20分）</div><ul class="saa-req"><li>可用性を上げるとコストはどうなるか</li><li>性能を上げるために何を追加するか</li><li>セキュリティ要件によって構成がどう変わるか</li></ul><div class="saa-sub">典型要件</div><ul class="saa-req"><li>可用性・性能・セキュリティ・コストのうち、どの要件を優先すべきか判断する</li><li>可用性や性能を高めることで、構成やコストがどう変わるか考える</li></ul><div class="saa-goal"><b>到達目標：</b>「AWSのサービスを覚える」前に、SAAで求められる設計判断の全体像を理解する。</div><div class="saa-material">教材：AWS Skill Builderで「AWS Certified Solutions Architect - Associate（SAA-C03）Exam Prep Plan」を検索して利用。個別サービスは次のキーワードでも検索できる：AWS Technical Essentials / AWS Well-Architected</div><div class="saa-blackbelt"><span class="bb-level none">Black Belt: 原則不要</span>このテーマはSkill Builderの学習だけで十分理解できることが多い。Black Beltは使わずに問題演習へ進んでよい。</div></div></div></div>
+    <div class="block"><div class="block-label saa-label">📘 並行タスク：SAA-C03 座学ロードマップ（基本1〜1.5h、Black Belt週は最大2h程度が目安）</div><div class="saa-block"><div class="saa-theme"><span class="saa-week-num">Week 1</span>AWS基礎・設計思想</div><table class="saa-breakdown"><tr><th style="width:64px">時間配分</th><th>学習内容</th></tr><tr><td class="time">30分</td><td>Region／Availability Zone／AWSグローバルインフラ／責任共有モデル／Well-Architected Framework</td></tr><tr><td class="time">25分</td><td>設計思想：セキュリティ／信頼性／パフォーマンス効率／コスト最適化</td></tr></table><div class="saa-sub">比較・判断軸（20分）</div><ul class="saa-req"><li>可用性を上げるとコストはどうなるか</li><li>性能を上げるために何を追加するか</li><li>セキュリティ要件によって構成がどう変わるか</li></ul><div class="saa-sub">典型要件</div><ul class="saa-req"><li>可用性・性能・セキュリティ・コストのうち、どの要件を優先すべきか判断する</li><li>可用性や性能を高めることで、構成やコストがどう変わるか考える</li></ul><div class="saa-goal"><b>到達目標：</b>「AWSのサービスを覚える」前に、SAAで求められる設計判断の全体像を理解する。</div><div class="saa-material"><b>使う教材（直接リンク）</b><ul class="materials"><li>① <a href="https://skillbuilder.aws/learn/QGYYVHXTYQ/exam-prep-overview-aws-certified-solutions-architect--associate-saac03--/45JVAAJ23W?parentId=5ES5T3BM13" target="_blank" rel="noopener">SAA-C03 Exam Prep Plan</a>（今週のテーマに関連するSAA-C03の要求事項を確認するための補助教材／AWS Skill Builder・Exam Prep／Region/AZ・責任共有モデル・Well-Architected Frameworkを扱う冒頭セクションを中心に確認）</li></ul></div><div class="saa-blackbelt"><span class="bb-level none">Black Belt: 原則不要</span>このテーマはSkill Builderの学習だけで十分理解できることが多い。Black Beltは使わずに問題演習へ進んでよい。</div></div></div></div>
     <div class="week" id="w2">
       <div class="week-head"><span class="week-num">WEEK 02</span><span class="week-hours">目安 4h</span><h3>IAM（ユーザー/グループ/ポリシー）、Compartments</h3></div>
       <div class="block">
@@ -182,7 +118,7 @@
         <div class="block-label">🧭 到達判定</div>
         <div class="criteria-box"><ul><li>User／Group／Policy／Compartmentの役割の違いを自分の言葉で説明できる</li><li>OCIのポリシー文（Allow ... to ... in ...）の構造を読める</li></ul></div>
       </div>
-    <div class="block"><div class="block-label saa-label">📘 並行タスク：SAA-C03 座学ロードマップ（基本1〜1.5h、Black Belt週は最大2h程度が目安）</div><div class="saa-block"><div class="saa-theme"><span class="saa-week-num">Week 2</span>IAM・セキュリティ</div><table class="saa-breakdown"><tr><th style="width:64px">時間配分</th><th>学習内容</th></tr><tr><td class="time">30分</td><td>IAM User／IAM Group／IAM Role／IAM Policy／STS／MFA</td></tr><tr><td class="time">25分</td><td>KMS／Security Group／NACL</td></tr></table><div class="saa-sub">比較・判断軸（20分）</div><ul class="saa-req"><li>User vs Role</li><li>Authentication vs Authorization</li><li>Security Group vs NACL</li></ul><div class="saa-sub">典型要件</div><ul class="saa-req"><li>AWSサービスから別のAWSサービスへ安全にアクセスさせたい → IAM Role</li><li>ユーザーやアプリケーションに必要最小限の権限だけを与えたい → IAM Policy／最小権限</li></ul><div class="saa-goal"><b>到達目標：</b>「誰が」「何に」「どの権限で」アクセスするのかを考え、適切なアクセス制御を選択できるようにする。</div><div class="saa-material">教材：AWS Skill Builderで「AWS Certified Solutions Architect - Associate（SAA-C03）Exam Prep Plan」を検索して利用。個別サービスは次のキーワードでも検索できる：AWS IAM / AWS Security / AWS KMS</div><div class="saa-blackbelt"><span class="bb-level optional">Black Belt: 必要なら</span>Skill Builder学習後、IAMポリシーの評価順序やKMSの仕組みを自分の言葉で説明できなければ、該当のBlack Belt PDFだけ確認する。動画は基本不要。</div></div></div></div>
+    <div class="block"><div class="block-label saa-label">📘 並行タスク：SAA-C03 座学ロードマップ（基本1〜1.5h、Black Belt週は最大2h程度が目安）</div><div class="saa-block"><div class="saa-theme"><span class="saa-week-num">Week 2</span>IAM・セキュリティ</div><table class="saa-breakdown"><tr><th style="width:64px">時間配分</th><th>学習内容</th></tr><tr><td class="time">30分</td><td>IAM User／IAM Group／IAM Role／IAM Policy／STS／MFA</td></tr><tr><td class="time">25分</td><td>KMS／Security Group／NACL</td></tr></table><div class="saa-sub">比較・判断軸（20分）</div><ul class="saa-req"><li>User vs Role</li><li>Authentication vs Authorization</li><li>Security Group vs NACL</li></ul><div class="saa-sub">典型要件</div><ul class="saa-req"><li>AWSサービスから別のAWSサービスへ安全にアクセスさせたい → IAM Role</li><li>ユーザーやアプリケーションに必要最小限の権限だけを与えたい → IAM Policy／最小権限</li></ul><div class="saa-goal"><b>到達目標：</b>「誰が」「何に」「どの権限で」アクセスするのかを考え、適切なアクセス制御を選択できるようにする。</div><div class="saa-material"><b>使う教材（直接リンク）</b><ul class="materials"><li>① <a href="https://skillbuilder.aws/learn/FZFYKYYV19/domain-1-review-aws-certified-solutions-architect--associate-saac03--/M59ZEVK77H?parentId=5ES5T3BM13" target="_blank" rel="noopener">SAA-C03 Exam Prep Plan — Domain 1 Review（Secure Architectures）</a>（今週のテーマに関連するSAA-C03の要求事項を確認するための補助教材／AWS Skill Builder・Exam Prep／IAM・アクセス制御に関する部分を中心に確認）</li><li>② <a href="https://pages.awscloud.com/rs/112-TZM-766/images/20190129_AWS-BlackBelt_IAM_Part1.pdf" target="_blank" rel="noopener">AWS Black Belt: AWS Identity and Access Management (IAM) Part1（PDF）</a></li><li>③ <a href="https://pages.awscloud.com/rs/112-TZM-766/images/20190130_AWS-BlackBelt_IAM_Part2.pdf" target="_blank" rel="noopener">AWS Black Belt: AWS Identity and Access Management (IAM) Part2（PDF）</a></li><li>④ <a href="https://pages.awscloud.com/rs/112-TZM-766/images/AWS-Black-Belt_2024_AWS_KeyManagementService_0331_v1.pdf" target="_blank" rel="noopener">AWS Black Belt: AWS Key Management Service Part.1 基礎編（PDF）</a></li></ul></div><div class="saa-blackbelt"><span class="bb-level optional">Black Belt: 必要なら</span>Skill Builder学習後、IAMポリシーの評価順序やKMSの仕組みを自分の言葉で説明できなければ、該当のBlack Belt PDFだけ確認する。動画は基本不要。</div></div></div></div>
     <div class="week" id="w3">
       <div class="week-head"><span class="week-num">WEEK 03</span><span class="week-hours">目安 5〜6h</span><h3>VCN概要、Compute基礎（Always Freeインスタンス起動）</h3></div>
       <div class="block">
@@ -211,7 +147,7 @@ icacls .\ダウンロードした鍵ファイル.key /grant:r "$($env:USERNAME):
         <div class="block-label">🧭 到達判定</div>
         <div class="criteria-box"><ul><li>VCNとSubnetの役割を自分の言葉で説明できる</li><li>発行したSSH鍵を使って、作成したインスタンスに自分でログインできる</li><li>Always Free対象のShapeを自分で選び直せる（変更を忘れると課金対象になる理由も含めて）</li></ul></div>
       </div>
-    <div class="block"><div class="block-label saa-label">📘 並行タスク：SAA-C03 座学ロードマップ（基本1〜1.5h、Black Belt週は最大2h程度が目安）</div><div class="saa-block"><div class="saa-theme"><span class="saa-week-num">Week 3</span>VPC・ネットワーク①</div><table class="saa-breakdown"><tr><th style="width:64px">時間配分</th><th>学習内容</th></tr><tr><td class="time">30分</td><td>VPC／Subnet／Route Table／Internet Gateway</td></tr><tr><td class="time">25分</td><td>Public Subnet／Private Subnet／NAT Gateway</td></tr><tr><td class="time">+20〜30分</td><td>Black Beltで理解を補強（PDF中心、必要に応じて動画）</td></tr></table><div class="saa-sub">比較・判断軸（20分）</div><ul class="saa-req"><li>Public Subnet vs Private Subnet</li><li>Internet Gateway vs NAT Gateway</li></ul><div class="saa-sub">典型要件</div><ul class="saa-req"><li>Webサーバーをインターネットから直接アクセス可能にしたい → Public Subnet</li><li>EC2からインターネットへはアクセスさせたいが、外部から直接アクセスされたくない → Private Subnet + NAT Gateway</li></ul><div class="saa-goal"><b>到達目標：</b>「インターネットからアクセスさせる必要があるか」「外部へは出たいが外部から直接アクセスされたくないか」という要件からネットワーク構成を考えられるようにする。</div><div class="saa-material">教材：AWS Skill Builderで「AWS Certified Solutions Architect - Associate（SAA-C03）Exam Prep Plan」を検索して利用。個別サービスは次のキーワードでも検索できる：Amazon VPC / NAT Gateway</div><div class="saa-blackbelt"><span class="bb-level strong">Black Belt: かなり推奨</span>Skill Builderだけでは通信経路がイメージしづらいテーマ。「Private SubnetからNAT Gateway経由で外部に出る」流れをPDFの構成図で確認し、それでも掴めなければ動画も併用する。</div></div></div></div>
+    <div class="block"><div class="block-label saa-label">📘 並行タスク：SAA-C03 座学ロードマップ（基本1〜1.5h、Black Belt週は最大2h程度が目安）</div><div class="saa-block"><div class="saa-theme"><span class="saa-week-num">Week 3</span>VPC・ネットワーク①</div><table class="saa-breakdown"><tr><th style="width:64px">時間配分</th><th>学習内容</th></tr><tr><td class="time">30分</td><td>VPC／Subnet／Route Table／Internet Gateway</td></tr><tr><td class="time">25分</td><td>Public Subnet／Private Subnet／NAT Gateway</td></tr><tr><td class="time">+20〜30分</td><td>Black Beltで理解を補強（PDF中心、必要に応じて動画）</td></tr></table><div class="saa-sub">比較・判断軸（20分）</div><ul class="saa-req"><li>Public Subnet vs Private Subnet</li><li>Internet Gateway vs NAT Gateway</li></ul><div class="saa-sub">典型要件</div><ul class="saa-req"><li>Webサーバーをインターネットから直接アクセス可能にしたい → Public Subnet</li><li>EC2からインターネットへはアクセスさせたいが、外部から直接アクセスされたくない → Private Subnet + NAT Gateway</li></ul><div class="saa-goal"><b>到達目標：</b>「インターネットからアクセスさせる必要があるか」「外部へは出たいが外部から直接アクセスされたくないか」という要件からネットワーク構成を考えられるようにする。</div><div class="saa-material"><b>使う教材（直接リンク）</b><ul class="materials"><li>① <a href="https://skillbuilder.aws/learn/FZFYKYYV19/domain-1-review-aws-certified-solutions-architect--associate-saac03--/M59ZEVK77H?parentId=5ES5T3BM13" target="_blank" rel="noopener">SAA-C03 Exam Prep Plan — Domain 1 Review（Secure Architectures）</a>（今週のテーマに関連するSAA-C03の要求事項を確認するための補助教材／AWS Skill Builder・Exam Prep／VPC・ネットワーク基礎に関する部分を中心に確認）</li><li>② <a href="https://pages.awscloud.com/rs/112-TZM-766/images/20201021_AWS-BlackBelt-VPC.pdf" target="_blank" rel="noopener">AWS Black Belt: Amazon Virtual Private Cloud (VPC)（PDF）</a></li><li>③ <a href="https://youtu.be/JAzsGRS_o4c" target="_blank" rel="noopener">AWS Black Belt: Amazon VPC（動画）</a></li></ul></div><div class="saa-blackbelt"><span class="bb-level strong">Black Belt: かなり推奨</span>Skill Builderだけでは通信経路がイメージしづらいテーマ。「Private SubnetからNAT Gateway経由で外部に出る」流れをPDFの構成図で確認し、それでも掴めなければ動画も併用する。</div></div></div></div>
     <div class="week" id="w4">
       <div class="week-head"><span class="week-num">WEEK 04</span><span class="week-hours">目安 5h</span><h3>AWS対比整理（IAM/VPC/EC2）</h3></div>
       <div class="block">
@@ -250,7 +186,7 @@ icacls .\ダウンロードした鍵ファイル.key /grant:r "$($env:USERNAME):
         <div class="block-label">🧭 到達判定</div>
         <div class="criteria-box"><ul><li>テナンシー〜コンパートメント〜VCN〜Computeの構成を図で説明できる</li><li>VCN＝VPC、Compute＝EC2など、OCIとAWSの主な対応関係を説明できる</li><li>AWSアカウントを作成し、ログインできる</li></ul></div>
       </div>
-    <div class="block"><div class="block-label saa-label">📘 並行タスク：SAA-C03 座学ロードマップ（基本1〜1.5h、Black Belt週は最大2h程度が目安）</div><div class="saa-block"><div class="saa-theme"><span class="saa-week-num">Week 4</span>ネットワーク②</div><table class="saa-breakdown"><tr><th style="width:64px">時間配分</th><th>学習内容</th></tr><tr><td class="time">30分</td><td>Application Load Balancer（ALB）／Network Load Balancer（NLB）／Route 53／CloudFront</td></tr><tr><td class="time">25分</td><td>典型構成：Route 53 → CloudFront → ALB → EC2　／概要として知る：VPN／VPC Peering／PrivateLink</td></tr><tr><td class="time">+15分</td><td>Black Beltで理解を補強（PDF中心、必要に応じて動画）</td></tr></table><div class="saa-sub">比較・判断軸（20分）</div><ul class="saa-req"><li>ALB vs NLB</li><li>Route 53（DNS）とCloudFront（CDN）の役割分担（併用可能で競合関係ではない）</li><li>CloudFrontを利用する理由</li></ul><div class="saa-sub">典型要件</div><ul class="saa-req"><li>HTTP/HTTPSのWebアプリケーションを複数のEC2へ振り分けたい → ALB</li><li>高性能なL4ロードバランシングが必要 → NLB</li><li>ユーザーに近い場所からコンテンツを配信したい → CloudFront</li></ul><div class="saa-goal"><b>到達目標：</b>DNS、コンテンツ配信、ロードバランシングを組み合わせた基本的なWebアーキテクチャを理解する。</div><div class="saa-material">教材：AWS Skill Builderで「AWS Certified Solutions Architect - Associate（SAA-C03）Exam Prep Plan」を検索して利用。個別サービスは次のキーワードでも検索できる：Elastic Load Balancing / Amazon Route 53 / Amazon CloudFront</div><div class="saa-blackbelt"><span class="bb-level recommend">Black Belt: 推奨</span>ALB/NLBの使い分けや、Route 53→CloudFront→ALB→EC2の典型構成をBlack Belt PDFで確認しておくと理解が安定する。</div></div></div></div>
+    <div class="block"><div class="block-label saa-label">📘 並行タスク：SAA-C03 座学ロードマップ（基本1〜1.5h、Black Belt週は最大2h程度が目安）</div><div class="saa-block"><div class="saa-theme"><span class="saa-week-num">Week 4</span>ネットワーク②</div><table class="saa-breakdown"><tr><th style="width:64px">時間配分</th><th>学習内容</th></tr><tr><td class="time">30分</td><td>Application Load Balancer（ALB）／Network Load Balancer（NLB）／Route 53／CloudFront</td></tr><tr><td class="time">25分</td><td>典型構成：Route 53 → CloudFront → ALB → EC2　／概要として知る：VPN／VPC Peering／PrivateLink</td></tr><tr><td class="time">+15分</td><td>Black Beltで理解を補強（PDF中心、必要に応じて動画）</td></tr></table><div class="saa-sub">比較・判断軸（20分）</div><ul class="saa-req"><li>ALB vs NLB</li><li>Route 53（DNS）とCloudFront（CDN）の役割分担（併用可能で競合関係ではない）</li><li>CloudFrontを利用する理由</li></ul><div class="saa-sub">典型要件</div><ul class="saa-req"><li>HTTP/HTTPSのWebアプリケーションを複数のEC2へ振り分けたい → ALB</li><li>高性能なL4ロードバランシングが必要 → NLB</li><li>ユーザーに近い場所からコンテンツを配信したい → CloudFront</li></ul><div class="saa-goal"><b>到達目標：</b>DNS、コンテンツ配信、ロードバランシングを組み合わせた基本的なWebアーキテクチャを理解する。</div><div class="saa-material"><b>使う教材（直接リンク）</b><ul class="materials"><li>① <a href="https://skillbuilder.aws/learn/1V5S9MC41R/domain-3-review-aws-certified-solutions-architect--associate-saac03--/2YCF5FYZYQ?parentId=5ES5T3BM13" target="_blank" rel="noopener">SAA-C03 Exam Prep Plan — Domain 3 Review（High-Performing Architectures）</a>（今週のテーマに関連するSAA-C03の要求事項を確認するための補助教材／AWS Skill Builder・Exam Prep／ロードバランシング・DNS・CDNに関する部分を中心に確認）</li><li>② <a href="https://pages.awscloud.com/rs/112-TZM-766/images/AWS-Black-Belt_2023_Elastic-Load-Balancing_0525_v1.pdf" target="_blank" rel="noopener">AWS Black Belt: Elastic Load Balancing（PDF）</a></li><li>③ <a href="https://pages.awscloud.com/rs/112-TZM-766/images/AWS-Black-Belt_2023_Amazon-Route53-Intro_0530_v1.pdf" target="_blank" rel="noopener">AWS Black Belt: Amazon Route 53 導入編（PDF）</a></li><li>④ <a href="https://pages.awscloud.com/rs/112-TZM-766/images/AWS-Black-Belt_2025_Amazon-CloudFront-Basic_0725_v1.pdf" target="_blank" rel="noopener">AWS Black Belt: Amazon CloudFront（基礎編）（PDF）</a></li></ul></div><div class="saa-blackbelt"><span class="bb-level recommend">Black Belt: 推奨</span>ALB/NLBの使い分けや、Route 53→CloudFront→ALB→EC2の典型構成をBlack Belt PDFで確認しておくと理解が安定する。</div></div></div></div>
 
     <footer>
       2026年度 SESインフラエンジニア育成ロードマップ（コースA：AWS資格（SAA）取得コース）｜チェックボックスの状態はこのブラウザに保存され、次回このページを開いたときも復元されます（進捗管理はPlannerで行ってください）

@@ -32,15 +32,14 @@
 
     <div class="saa-block" style="margin-bottom:28px;">
       <div class="saa-label">📘 SAA-C03 公式4ドメインとの対応</div>
-      <p class="bb-guide-intro" style="margin-top:0;">SAA-C03試験は公式に4つの出題領域（ドメイン）で構成されています。下表は、このロードマップのSAA座学（9月・10月・11月・12月に配置、全16週）の各Weekが<b>主にどのドメインと対応しているか</b>を示す簡易対応表です。実際には1つのWeekが複数ドメインにまたがって扱われることが多いため、「このWeekだけ勉強すればそのドメインは十分」という意味ではなく、あくまで重点の目安として参照してください。</p>
-      <table class="saa-breakdown">
-        <tr><th style="width:190px">SAA領域（ドメイン）</th><th>主に扱うWeek（座学）</th></tr>
-        <tr><td class="time">Secure Architectures</td><td>Week 2（IAM・セキュリティ）／Week 13（セキュリティ設計の深化）／Week 14（ネットワーク設計の深化）　※Week 3（VPC・ネットワーク①）にもセキュリティ関連の内容を含む</td></tr>
-        <tr><td class="time">Resilient Architectures</td><td>Week 7（RDS・Aurora）／Week 9（アプリケーション統合）／Week 10（高可用性・DR）／Week 16（監視・運用＋総合設計）</td></tr>
-        <tr><td class="time">High-Performing Architectures</td><td>Week 4（ネットワーク②）／Week 5（コンピューティング）／Week 6（ストレージ）／Week 8（DynamoDB・ElastiCache）／Week 11（高性能・サーバーレス・コンテナ）／Week 15（サーバーレス・疎結合アーキテクチャ）</td></tr>
-        <tr><td class="time">Cost-Optimized Architectures</td><td>Week 6（ストレージ）／Week 12（コスト最適化・総合設計）　※他Weekでもサービス選定の一要素としてコストの視点に触れる</td></tr>
-      </table>
-      <p class="saa-material" style="margin-top:10px;">Week 1（AWS基礎・設計思想）は4ドメインすべての土台となる回のため、特定のドメインに割り当てていません。分野別演習・ランダム演習・模試の期間（1月〜3月）も、こうした複数ドメインにまたがる形で出題される点を踏まえて取り組んでください。</p>
+      <p class="bb-guide-intro" style="margin-top:0;">SAA-C03は4つの出題領域（ドメイン）で構成されています。本ロードマップでは、既存のOCI・Terraform等の学習テーマを維持しながら、各週のテーマに関連するSAA-C03の観点をExam Prepで確認します。そのため、各Weekを特定のドメインに固定して対応させるものではありません。16週間を通して4ドメインを横断的に学習し、Week 16のExam Prep Summaryで総整理します。</p>
+      <p class="bb-guide-intro" style="margin-top:10px;">Week 1〜16はSAA-C03の座学期間です。Week 16までにExam PrepとBlack Beltを使った座学を完了し、その後の1月〜3月は問題演習・模試・弱点補強を行う実践期間です。</p>
+      <ul class="materials" style="margin-top:10px;">
+        <li><b>Secure Architectures</b>：セキュリティ要件を満たすアーキテクチャの設計（IAM、暗号化、ネットワークセキュリティ等）</li>
+        <li><b>Resilient Architectures</b>：可用性・耐障害性を備えたアーキテクチャの設計（Multi-AZ、バックアップ、DR等）</li>
+        <li><b>High-Performing Architectures</b>：性能・スケーラビリティを満たすアーキテクチャの設計（コンピューティング、ストレージ、データベース、ネットワーク等）</li>
+        <li><b>Cost-Optimized Architectures</b>：コスト効率を考慮したアーキテクチャの設計（料金モデル、リソース最適化等）</li>
+      </ul>
     </div>
 
     <div class="month-grid">
