@@ -14,7 +14,7 @@
     <span class="course-badge a">SAA取得を目指す</span>
     <a class="back-index" href="index.html">← 目次（全7ヶ月）へ戻る</a>
     <div class="nav-group-label">9月｜OCI基礎</div>
-    <nav><a href="#blackbelt-guide"><span class="dot"></span>Black Beltの使い方</a><a href="#cp-branch"><span class="dot"></span>AWS基礎の確認（分岐）</a><a href="#w1"><span class="dot"></span>アカウント作成</a><a href="#w2"><span class="dot"></span>IAM・Compartments</a><a href="#w3"><span class="dot"></span>VCN・Compute</a><a href="#w4"><span class="dot"></span>AWS対比整理</a></nav>
+    <nav><a href="#blackbelt-guide"><span class="dot"></span>Black Beltの使い方</a><a href="#cp-branch"><span class="dot"></span>AWS基礎の確認（分岐）</a><a href="#w1"><span class="dot"></span>アカウント作成</a><a href="#w2"><span class="dot"></span>IAM・コンパートメント</a><a href="#w3"><span class="dot"></span>VCN・Compute</a><a href="#w4"><span class="dot"></span>AWS対比整理</a></nav>
     <div class="prevnext"><a class="disabled">← 前の月</a><a href="2026-10.html">10月 →</a></div>
     <div class="nav-group-label">全体の月一覧</div>
     <nav class="month-nav"><a href="2026-09.html" class="current"><span class="dot"></span>9月｜OCI基礎</a><a href="2026-10.html"><span class="dot"></span>10月｜OCIネットワーク</a><a href="2026-11.html"><span class="dot"></span>11月｜Terraform入門①</a><a href="2026-12.html"><span class="dot"></span>12月｜Terraform入門②</a><a href="2027-01.html"><span class="dot"></span>1月｜Terraform実践①</a><a href="2027-02.html"><span class="dot"></span>2月｜Terraform実践②</a><a href="2027-03.html"><span class="dot"></span>3月｜SAA対策（模試・弱点演習）</a></nav>
@@ -81,7 +81,7 @@
       </div>
     <div class="block"><div class="block-label saa-label">📘 並行タスク：SAA-C03 座学ロードマップ（基本1〜1.5h、Black Belt週は最大2h程度が目安）</div><div class="saa-block"><div class="saa-theme"><span class="saa-week-num">Week 1</span>AWS基礎・設計思想</div><table class="saa-breakdown"><tr><th style="width:64px">時間配分</th><th>学習内容</th></tr><tr><td class="time">30分</td><td>Region／Availability Zone／AWSグローバルインフラ／責任共有モデル／Well-Architected Framework</td></tr><tr><td class="time">25分</td><td>設計思想：セキュリティ／信頼性／パフォーマンス効率／コスト最適化</td></tr></table><div class="saa-sub">比較・判断軸（20分）</div><ul class="saa-req"><li>可用性を上げるとコストはどうなるか</li><li>性能を上げるために何を追加するか</li><li>セキュリティ要件によって構成がどう変わるか</li></ul><div class="saa-sub">典型要件</div><ul class="saa-req"><li>可用性・性能・セキュリティ・コストのうち、どの要件を優先すべきか判断する</li><li>可用性や性能を高めることで、構成やコストがどう変わるか考える</li></ul><div class="saa-goal"><b>到達目標：</b>「AWSのサービスを覚える」前に、SAAで求められる設計判断の全体像を理解する。</div><div class="saa-material"><b>使う教材（直接リンク）</b><ul class="materials"><li>① <a href="https://skillbuilder.aws/learn/QGYYVHXTYQ/exam-prep-overview-aws-certified-solutions-architect--associate-saac03--/45JVAAJ23W?parentId=5ES5T3BM13" target="_blank" rel="noopener">SAA-C03 Exam Prep Plan</a>（今週のテーマに関連するSAA-C03の要求事項を確認するための補助教材／AWS Skill Builder・Exam Prep／Region/AZ・責任共有モデル・Well-Architected Frameworkを扱う冒頭セクションを中心に確認）</li></ul></div><div class="saa-blackbelt"><span class="bb-level none">Black Belt: 原則不要</span>このテーマはSkill Builderの学習だけで十分理解できることが多い。Black Beltは使わずに問題演習へ進んでよい。</div></div></div></div>
     <div class="week" id="w2">
-      <div class="week-head"><span class="week-num">WEEK 02</span><span class="week-hours">目安 4h</span><h3>IAM（ユーザー/グループ/ポリシー）、Compartments</h3></div>
+      <div class="week-head"><span class="week-num">WEEK 02</span><span class="week-hours">目安 4h</span><h3>IAM（ユーザー/グループ/ポリシー）、コンパートメント</h3></div>
       <div class="block">
         <div class="block-label">🎯 このタスクのゴール</div>
         <div class="goal-text">「開発用の作業スペース（コンパートメント）」を作り、そこに対してだけ操作できるユーザーグループを作る。</div>
@@ -92,11 +92,11 @@
       </div>
       <div class="block">
         <div class="block-label">🛠 具体的な手順</div>
-        <ol class="steps"><li>（準備）ブラウザで <a href="https://cloud.oracle.com/" target="_blank" rel="noopener">https://cloud.oracle.com/</a> を開き、9月第1週で作成したテナンシー名・ユーザー名・パスワードでログインしておく（すでにログイン済みならこの手順は不要）。以降の「〇〇を開く」はログイン後の画面からの操作を指す。</li><li><b>コンパートメントを作る。</b>「Identity &amp; Security（アイデンティティとセキュリティ）」→「Compartments（コンパートメント）」→「Create Compartment（コンパートメントの作成）」。名前は<code class="inline">dev</code>。</li><li><b>IAMグループを作る。</b>「Domains（ドメイン）」→「Groups（グループ）」→「Create Group（グループの作成）」で<code class="inline">developers</code>という名前のグループを作成する。</li><li><b>ポリシーで権限を付与する。</b>「Policies（ポリシー）」で対象コンパートメントを<code class="inline">dev</code>に切り替え、次の1文を入力する。<div class="cmd">Allow group developers to manage all-resources in compartment dev</div>（※これは学習用に権限の設定方法を体験するための簡易ポリシーであり、実務では対象サービス・操作を絞った最小権限のポリシーを設計する。）</li><li><b>AWSとの対比メモを作る。</b> User=IAM User、Group=IAM Group、Policy=IAM Policy、Compartment=（AWSに該当なし）、という対応を表でまとめる。<code class="inline">study-notes</code>リポジトリに<code class="inline">2026-09-iam-comparison.md</code>として保存し、pushする。</li></ol>
+        <ol class="steps"><li>（準備）ブラウザで <a href="https://cloud.oracle.com/" target="_blank" rel="noopener">https://cloud.oracle.com/</a> を開き、9月第1週で作成したテナンシー名・ユーザー名・パスワードでログインしておく（すでにログイン済みならこの手順は不要）。以降の「〇〇を開く」はログイン後の画面からの操作を指す。</li><li><b>コンパートメントを作る。</b>「アイデンティティとセキュリティ」→「アイデンティティ」→「コンパートメント」→「コンパートメントの作成」。名前は<code class="inline">dev</code>。</li><li><b>IAMグループを作る。</b>「アイデンティティとセキュリティ」→「アイデンティティ」→「ドメイン」→「グループ」→「グループの作成」で<code class="inline">developers</code>という名前のグループを作成する。</li><li><b>ポリシーで権限を付与する。</b>「アイデンティティとセキュリティ」→「アイデンティティ」→「ポリシー」で対象コンパートメントを<code class="inline">dev</code>に切り替え、次の1文を入力する。<div class="cmd">Allow group developers to manage all-resources in compartment dev</div>（※これは学習用に権限の設定方法を体験するための簡易ポリシーであり、実務では対象サービス・操作を絞った最小権限のポリシーを設計する。）</li><li><b>AWSとの対比メモを作る。</b> User=IAM User、Group=IAM Group、Policy=IAM Policy、Compartment=（AWSに該当なし）、という対応を表でまとめる。<code class="inline">study-notes</code>リポジトリに<code class="inline">2026-09-iam-comparison.md</code>として保存し、pushする。</li></ol>
       </div>
       <div class="block">
         <div class="block-label">⚠️ つまずきやすいポイント</div>
-        <div class="warn-box"><ul><li>OCIのポリシー文は英文に近い書き方。「Allow（グループ）to（できること）in（どこで）」の順番だけ覚えれば読み書きできる。</li><li>「Groups（グループ）」の場所はコンソールのアップデートで変わることがある。見当たらない場合は検索窓で「Group」を検索する。</li></ul></div>
+        <div class="warn-box"><ul><li>OCIのポリシー文は英文に近い書き方。「Allow（グループ）to（できること）in（どこで）」の順番だけ覚えれば読み書きできる。</li><li>「グループ」の場所はコンソールのアップデートで変わることがある。見当たらない場合は検索窓で「グループ」を検索する。</li></ul></div>
       </div>
       <div class="block">
         <div class="block-label">✅ 成果物</div>
