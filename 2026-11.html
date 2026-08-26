@@ -76,7 +76,7 @@
       </div>
       <div class="block">
         <div class="block-label">🛠 具体的な手順</div>
-        <ol class="steps"><li><b>APIキーを発行し、認証情報を設定する。</b> これは2段階の作業になる。①PowerShellで<code class="inline">oci setup config</code>を実行すると、対話形式で質問されながらローカルに秘密鍵・公開鍵のペアが自動生成される（保存場所はデフォルトのままでよい）。②生成された公開鍵の中身をコピーし、OCIコンソール右上のユーザーアイコン→「User Settings（ユーザー設定）」→「API Keys（APIキー）」→「Add API Key（APIキーの追加）」で貼り付けて登録する。この②を忘れると、①だけでは認証が通らない点に注意。</li><li><b>CLIの疎通確認をする。</b> <code class="inline">oci iam compartment list --compartment-id &lt;テナンシーOCID&gt;</code>を実行し、認証設定が正しくできているかをOCI CLIから確認する（コンパートメント一覧がJSON形式で返ってくればOK）。</li><li><b>Providerを記述する。</b> 作業フォルダに<code class="inline">provider.tf</code>を作り、チュートリアルのサンプルをコピーして自分のテナンシーOCID等に書き換える。</li></ol>
+        <ol class="steps"><li><b>APIキーを発行し、認証情報を設定する。</b> これは2段階の作業になる。①PowerShellで<code class="inline">oci setup config</code>を実行すると、対話形式で質問されながらローカルに秘密鍵・公開鍵のペアが自動生成される（保存場所はデフォルトのままでよい）。②生成された公開鍵の中身をコピーし、OCIコンソール右上のユーザーアイコン（プロファイル）→「ユーザー設定」→ユーザー詳細画面のリソース一覧「APIキー」→「APIキーの追加」で貼り付けて登録する。この②を忘れると、①だけでは認証が通らない点に注意。</li><li><b>CLIの疎通確認をする。</b> <code class="inline">oci iam compartment list --compartment-id &lt;テナンシーOCID&gt;</code>を実行し、認証設定が正しくできているかをOCI CLIから確認する（コンパートメント一覧がJSON形式で返ってくればOK）。</li><li><b>Providerを記述する。</b> 作業フォルダに<code class="inline">provider.tf</code>を作り、チュートリアルのサンプルをコピーして自分のテナンシーOCID等に書き換える。</li></ol>
       </div>
       <div class="block">
         <div class="block-label">⚠️ つまずきやすいポイント</div>
