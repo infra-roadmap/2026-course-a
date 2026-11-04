@@ -63,7 +63,7 @@
       </div>
       <div class="block">
         <div class="block-label">🛠 具体的な手順</div>
-        <ol class="steps"><li>PowerShellを開き、作業用フォルダに <code class="inline">cd</code> で移動してから、以降の操作を行う。</li><li><code class="inline">terraform plan</code>を実行し、差分表示（+/-記号）の読み方を復習する。</li><li>コードを意図的に1行変更し（例：インスタンス名を変える）、再度<code class="inline">plan</code>で差分が正しく検出されることを確認する。</li><li><code class="inline">terraform validate</code>も合わせて実行し、文法エラーがないことを確認する習慣をつける。</li></ol>
+        <ol class="steps"><li>PowerShellを開き、作業フォルダ（<code class="inline">cd $env:USERPROFILE\oci-learning-log</code>）に移動してから、以降の操作を行う。</li><li><code class="inline">terraform plan</code>を実行し、差分表示（+/-記号）の読み方を復習する。</li><li>コードを意図的に1行変更し（例：インスタンス名を変える）、再度<code class="inline">plan</code>で差分が正しく検出されることを確認する。</li><li><code class="inline">terraform validate</code>も合わせて実行し、文法エラーがないことを確認する習慣をつける。</li></ol>
       </div>
       <div class="block">
         <div class="block-label">✅ 成果物</div>
@@ -87,7 +87,7 @@
       </div>
       <div class="block">
         <div class="block-label">🛠 具体的な手順</div>
-        <ol class="steps"><li>PowerShellを開き、作業用フォルダに <code class="inline">cd</code> で移動してから、以降の操作を行う。</li><li>前週コードを1行変更した状態のまま、<code class="inline">terraform plan</code>で差分を再確認する。</li><li><code class="inline">terraform apply</code>を実行し、<code class="inline">yes</code>と入力して変更を適用する。</li><li>OCIコンソール（またはCLI）で、変更した内容（インスタンス名など）が実際に反映されていることを確認する。</li></ol>
+        <ol class="steps"><li>PowerShellを開き、作業フォルダ（<code class="inline">cd $env:USERPROFILE\oci-learning-log</code>）に移動してから、以降の操作を行う。</li><li>前週コードを1行変更した状態のまま、<code class="inline">terraform plan</code>で差分を再確認する。</li><li><code class="inline">terraform apply</code>を実行し、<code class="inline">yes</code>と入力して変更を適用する。</li><li>OCIコンソール（またはCLI）で、変更した内容（インスタンス名など）が実際に反映されていることを確認する。</li></ol>
       </div>
       <div class="block">
         <div class="block-label">⚠️ つまずきやすいポイント</div>
@@ -115,7 +115,7 @@
       </div>
       <div class="block">
         <div class="block-label">🛠 具体的な手順</div>
-        <ol class="steps"><li>PowerShellを開き、作業用フォルダに <code class="inline">cd</code> で移動してから、以降の操作を行う。</li><li><code class="inline">terraform.tfstate</code>の中身をエディタで開いて構造（JSON形式）を確認する。</li><li><code class="inline">terraform state list</code>で管理対象のリソース一覧を表示する。</li></ol>
+        <ol class="steps"><li>PowerShellを開き、作業フォルダ（<code class="inline">cd $env:USERPROFILE\oci-learning-log</code>）に移動してから、以降の操作を行う。</li><li><code class="inline">terraform.tfstate</code>の中身をエディタで開いて構造（JSON形式）を確認する。</li><li><code class="inline">terraform state list</code>で管理対象のリソース一覧を表示する。</li></ol>
       </div>
       <div class="block">
         <div class="block-label">⚠️ つまずきやすいポイント</div>
@@ -143,7 +143,7 @@
       </div>
       <div class="block">
         <div class="block-label">🛠 具体的な手順</div>
-        <ol class="steps"><li>PowerShellを開き、作業用フォルダに <code class="inline">cd</code> で移動してから、以降の操作を行う。</li><li><code class="inline">terraform state show &lt;resource&gt;</code>で特定リソースの詳細を確認する。</li><li><b>OCI CLIとも突き合わせる。</b> <code class="inline">oci compute instance list --compartment-id &lt;コンパートメントOCID&gt;</code>を実行し、<code class="inline">terraform state list</code>の内容と実際に作成されているリソースが一致していることを確認する。</li></ol>
+        <ol class="steps"><li>PowerShellを開き、作業フォルダ（<code class="inline">cd $env:USERPROFILE\oci-learning-log</code>）に移動してから、以降の操作を行う。</li><li><code class="inline">terraform state show &lt;resource&gt;</code>で特定リソースの詳細を確認する。</li><li><b>OCI CLIとも突き合わせる。</b> <code class="inline">oci compute instance list --compartment-id &lt;コンパートメントOCID&gt;</code>を実行し、<code class="inline">terraform state list</code>の内容と実際に作成されているリソースが一致していることを確認する。</li></ol>
       </div>
       <div class="block">
         <div class="block-label">✅ 成果物</div>
