@@ -3,210 +3,264 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>コースB：OCI限定コース（AWS資格を目指さない）｜12月：Terraform実践</title>
+<title>コースA：AWS資格（SAA）取得コース｜12月：Terraform入門②</title>
 <link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
 <div class="layout">
   <aside class="sidebar">
     <div class="brand">SES育成ロードマップ 2026年度</div>
-    <h1>コースB：OCI限定コース（AWS資格を目指さない）</h1>
-    <span class="course-badge b">SAA取得を目指さない</span>
+    <h1>コースA：AWS資格（SAA）取得コース</h1>
+    <span class="course-badge a">SAA取得を目指す</span>
     <a class="back-index" href="index.html">← 目次（全7ヶ月）へ戻る</a>
-    <div class="nav-group-label">12月｜Terraform実践</div>
-    <nav><a href="#w1"><span class="dot"></span>plan/apply理解</a><a href="#w2"><span class="dot"></span>state管理</a><a href="#w3"><span class="dot"></span>data source・Compute構築</a><a href="#w4"><span class="dot"></span>拡張演習＆振り返り</a></nav>
+    <div class="nav-group-label">12月｜Terraform入門②</div>
+    <nav><a href="#w1"><span class="dot"></span>Variable</a><a href="#w2"><span class="dot"></span>Output＋実機②</a><a href="#w3"><span class="dot"></span>Subnet構築</a><a href="#w4"><span class="dot"></span>Git管理開始</a></nav>
     <div class="prevnext"><a href="2026-11.html">← 11月</a><a href="2027-01.html">1月 →</a></div>
     <div class="nav-group-label">全体の月一覧</div>
-    <nav class="month-nav"><a href="2026-09.html"><span class="dot"></span>9月｜OCI基礎</a><a href="2026-10.html"><span class="dot"></span>10月｜OCIネットワーク</a><a href="2026-11.html"><span class="dot"></span>11月｜Terraform入門</a><a href="2026-12.html" class="current"><span class="dot"></span>12月｜Terraform実践</a><a href="2027-01.html"><span class="dot"></span>1月｜Terraform総合演習①</a><a href="2027-02.html"><span class="dot"></span>2月｜Terraform総合演習②</a><a href="2027-03.html"><span class="dot"></span>3月｜Terraform実務設計</a></nav>
+    <nav class="month-nav"><a href="2026-09.html"><span class="dot"></span>9月｜OCI基礎</a><a href="2026-10.html"><span class="dot"></span>10月｜OCIネットワーク</a><a href="2026-11.html"><span class="dot"></span>11月｜Terraform入門①</a><a href="2026-12.html" class="current"><span class="dot"></span>12月｜Terraform入門②</a><a href="2027-01.html"><span class="dot"></span>1月｜Terraform実践①</a><a href="2027-02.html"><span class="dot"></span>2月｜Terraform実践②</a><a href="2027-03.html"><span class="dot"></span>3月｜SAA対策（模試・弱点演習）</a></nav>
   </aside>
   <main>
     <div class="doc-header">
       <div class="eyebrow">学習ロードマップ（詳細版）</div>
-      <h1>12月：Terraform実践</h1>
-      <p class="sub">コースB：OCI限定コース（AWS資格を目指さない）</p>
-      <p class="lead">Terraformの基本操作をより実践的に理解し、Compute（コンピュート）まで含めた一連の構築ができるようにします。</p>
-      <p class="practical"><b>💼 この月で実務的にできるようになること：</b>terraform planの差分の読み方やtfstateの中身を理解した上で、data sourceで既存情報を参照しながらCompute環境までを一連のコードで構築・変更できるようになります。</p>
+      <h1>12月：Terraform入門②</h1>
+      <p class="sub">コースA：AWS資格（SAA）取得コース</p>
+      <p class="lead">11月に続き、Terraformの基本文法を学びます。今月はVariable・Outputでハードコードした値を整理し、Subnetのコード化とGitでのバージョン管理を始めます。9月から続けているSAA-C03「座学ロードマップ」（SAA-C03座学：週1〜1.5時間程度を基本とします。各週のExam Prepは、その週のテーマに関連する部分を中心に確認します。Black Beltを補助的に利用する週は、15〜30分程度を追加で見込んでください（<a href="2026-09.html#blackbelt-guide" target="_blank" rel="noopener">Black Beltの使い方はこちら</a>））はこの月で完了します（Week13〜16、メイン学習時間とは別枠の目安です）。</p>
+      <p class="practical"><b>💼 この月で実務的にできるようになること：</b>CIDRやコンパートメントOCIDのような値をコードの外に切り出して管理し、Subnetのコード化と、GitHubでのコード管理を実務のIaC運用の基本として自分ひとりで回せるようになります。</p>
     </div>
 
     <h2 class="section-title" id="glossary">📖 この月で出てくる用語</h2>
     <table class="glossary">
       <tr><th style="width:14%">用語</th><th style="width:28%">ひとことで言うと</th><th>もう少し詳しく</th></tr>
-      <tr><td class="term">state管理</td><td class="short">Terraformの「現在の状態」を保存・確認すること</td><td><code class="inline">terraform state list</code>等のコマンドで中身を見られる</td></tr><tr><td class="term">data source</td><td class="short">既存の情報を参照する仕組み</td><td>自分で作ったのではなく、OCI側に既にある情報（可用性ドメイン等）を取得して使う</td></tr>
+      <tr><td class="term">Variable（変数）</td><td class="short">コードの中の値を外に切り出す仕組み</td><td>CIDRやOCIDのような値をハードコードせず、<code class="inline">variables.tf</code>に定義して使い回せるようにする</td></tr><tr><td class="term">tfvars</td><td class="short">変数に入れる実際の値を書くファイル</td><td>秘密情報が入ることが多く、Gitには含めないのが基本</td></tr><tr><td class="term">Output（出力値）</td><td class="short">applyの結果を画面に表示する仕組み</td><td>作成したリソースのIDなどを、後から確認しやすくする</td></tr><tr><td class="term">Git / .gitignore</td><td class="short">コードのバージョン管理ツール／管理対象から除外するファイルの指定</td><td>tfstateや秘密情報入りのファイルはGit管理から除外する</td></tr>
     </table>
 
     <h2 class="section-title">週次タスク</h2>
     
     <div class="week" id="w1">
-      <div class="week-head"><span class="week-num">WEEK 01</span><span class="week-hours">目安 3.5h</span><h3>terraform plan/apply の理解</h3></div>
+      <div class="week-head"><span class="week-num">WEEK 01</span><span class="week-hours">目安 3〜3.5h</span><h3>Variable基礎（変数への切り出し）</h3></div>
       <div class="block">
         <div class="block-label">🎯 このタスクのゴール</div>
-        <div class="goal-text">plan（予告）とapply（実行）の違いを、実際に差分を出して体感する。「コードを変えたとき」と「コンソールから直接変えたとき（ドリフト）」の2通りで差分を出し、<code class="inline">terraform plan</code>の表示を自分で読めるようになる。</div>
+        <div class="goal-text">CIDRやコンパートメントOCIDのような値を、コードの外に切り出して管理できるようにする。切り出したあとも<code class="inline">terraform plan</code>が「No changes」のままであることで、動作を変えずに整理できたことを確認する。</div>
+      </div>
+      <div class="block">
+        <div class="block-label">🔐 識別子と秘密情報の違い</div>
+        <div class="goal-text">テナンシーOCID・ユーザーOCID・コンパートメントOCIDなどの<b>OCID</b>は、リソースやアカウントを識別するための情報で、それ自体はパスワードのような秘密情報ではない。一方、API Key Private Key・Customer Secret Key・パスワード・トークンなどの認証情報は、漏洩すると不正利用につながる<b>秘密情報</b>にあたる。<code class="inline">terraform.tfvars</code>・<code class="inline">.tfstate</code>・<code class="inline">.tfstate.backup</code>には、こうした識別子や秘密情報が設定値として含まれることがあるため、内容にかかわらずGitへ不用意にコミットしないのが基本の習慣。</div>
       </div>
       <div class="block">
         <div class="block-label">📚 使う教材</div>
-        <ul class="materials"><li>Terraform公式CLIドキュメント <a href="https://developer.hashicorp.com/terraform/cli" target="_blank" rel="noopener">https://developer.hashicorp.com/terraform/cli</a></li><li>Terraform公式CLIドキュメント（terraform plan） <a href="https://developer.hashicorp.com/terraform/cli/commands/plan" target="_blank" rel="noopener">https://developer.hashicorp.com/terraform/cli/commands/plan</a></li></ul>
+        <ul class="materials"><li>Oracle公式チュートリアル「変数の宣言」「出力値の照会」 <a href="https://docs.oracle.com/ja-jp/iaas/developer-tutorials/tutorials/tf-provider/04-summary.htm" target="_blank" rel="noopener">https://docs.oracle.com/ja-jp/iaas/developer-tutorials/tutorials/tf-provider/04-summary.htm</a></li></ul>
       </div>
       <div class="block">
         <div class="block-label">🛠 具体的な手順</div>
-        <ol class="steps"><li>PowerShell（またはコマンドプロンプト）を開く（スタートメニューで「PowerShell」と検索して起動。普段VS Codeを使っているなら内蔵のターミナル機能でもよい）。作業フォルダに移動してから、以降の操作を行う。<div class="cmd">cd $env:USERPROFILE\oci-learning-log</div>PowerShellを開き直したら毎回、最初にこの<code class="inline">cd</code>を実行する（開き直した直後は別の場所にいる）。</li><li><b>今週使うものを確認する。</b> 今週は新しいリソースは作らない。11月に作ったVCN（コード上の名前は<code class="inline">oci_core_vcn.main</code>、OCIコンソール上の名前は<code class="inline">tf-vcn</code>）の<b>名前だけ</b>を変えて、差分の出方を観察する。名前の変更は、VCNを作り直さずにその場で書き換えられる安全な変更なので、練習に向いている。<br>注意：OCIコンソールには、10月に手動で作ったVCNと、Terraformで作った<code class="inline">tf-vcn</code>の2つが並んでいる。今週触るのは<b><code class="inline">tf-vcn</code>の方だけ</b>（手動で作った方は触らない）。<br>Gitは、11月Week 4で切った<code class="inline">feature/add-subnets</code>branchのままでよい。今週はcommit・pushしない。</li><li><b>切り出し前の基準を作る。</b> 次を実行し、<code class="inline">No changes. Your infrastructure matches the configuration.</code>と表示されることを確認する。これは「コードの内容と、OCI上の実際の状態が一致している」という意味で、この後の差分が「自分の変更によるもの」だと判断する基準になる。<div class="cmd">terraform plan</div>「No changes」以外が表示された場合：<br>・<code class="inline">Enter a value:</code>と入力を求められた場合：<code class="inline">Ctrl+C</code>で中断し、<code class="inline">terraform.tfvars</code>が作業フォルダ直下にあるか（<code class="inline">dir terraform.tfvars</code>）を確認する。<br>・<code class="inline">Missing required provider</code>のようなエラーの場合：<code class="inline">terraform init</code>を実行してから、もう一度<code class="inline">terraform plan</code>を実行する。<br>・<code class="inline">401-NotAuthenticated</code>の場合：11月Week 1の<code class="inline">provider.tf</code>／<code class="inline">terraform.tfvars</code>の値（fingerprint・OCID・秘密鍵のパス）を見直す。<br>・差分（<code class="inline">~</code>など）が表示された場合：<b>applyせず</b>、<code class="inline">terraform.tfvars</code>の<code class="inline">vcn_display_name</code>が<code class="inline">tf-vcn</code>になっているか、OCIコンソールのVCN名が<code class="inline">tf-vcn</code>のままか（誰かが変更していないか）を確認する。</li><li><b>planの表示の読み方を押さえる。</b> これから出てくる差分表示を読むための基礎知識。差分の行頭の記号は、次の意味を持つ。<pre>記号   意味
-+      新しく作る
--      削除する
-~      その場で変更する（作り直しではない）
--/+    いったん削除してから作り直す（要注意。VCNなら中身のSubnet等にも影響する）</pre>最終行の<code class="inline">Plan: 1 to add, 2 to change, 0 to destroy.</code>は「作成1件・変更2件・削除0件の予定」という集計。<b>applyの前に、まずこの行の<code class="inline">destroy</code>の数が想定どおりか（今回は0）を見る</b>習慣をつける。</li><li><b>コードを1行だけ変更する。</b> 名前は<code class="inline">terraform.tfvars</code>の<code class="inline">vcn_display_name</code>で指定している（11月Week 3で変数に切り出した）。<code class="inline">notepad terraform.tfvars</code>で開き、次の1行だけを書き換えて保存する。<pre>（変更前） vcn_display_name = "tf-vcn"
-（変更後） vcn_display_name = "tf-vcn-v2"</pre>半角の<code class="inline">"</code>で囲む点と、他の行は触らない点に注意。保存したら、次の2つを順に実行する。<div class="cmd">terraform fmt
-terraform validate</div><code class="inline">Success! The configuration is valid.</code>と表示されればOK（<code class="inline">fmt</code>は何も表示されなくても正常）。<code class="inline">validate</code>は文法のチェックだけで、OCIには接続しない。plan／applyの前に毎回行う習慣にする。</li><li><b>planで差分を出す。</b> 次を実行する。<div class="cmd">terraform plan</div>次のような表示になれば成功（細かい表示はバージョンで多少異なる）。<pre>  # oci_core_vcn.main will be updated in-place
-  ~ resource "oci_core_vcn" "main" {
-      ~ display_name = "tf-vcn" -&gt; "tf-vcn-v2"
-        id           = "ocid1.vcn.oc1.ap-tokyo-1.xxxx"
-        # (xx unchanged attributes hidden)
-    }
+        <ol class="steps"><li>PowerShell（またはコマンドプロンプト）を開く（スタートメニューで「PowerShell」と検索して起動。普段VS Codeを使っているなら内蔵のターミナル機能でもよい）。作業フォルダ（<code class="inline">cd $env:USERPROFILE\oci-learning-log</code>）に移動してから、以降の操作を行う。</li><li><b>切り出し前の基準を作る。</b> 次を実行し、<code class="inline">No changes. Your infrastructure matches the configuration.</code>と表示されることを確認する。これは「11月にapplyして作ったVCNと、コードの内容が一致している」という意味で、この後の変数への切り出しが正しくできたかを判断する基準になる。<div class="cmd">terraform plan</div>差分が出る場合は、11月のVCNのapplyが完了していない可能性があるので、先に11月の作業を終わらせる。あわせて、11月に疎通確認用として作った<code class="inline">check.tf</code>が残っていれば、値を直接書いた古いファイルなので削除しておく。<div class="cmd">Remove-Item check.tf -ErrorAction SilentlyContinue</div>（ファイルが無い場合は何も表示されず、それで正常）</li><li><b>何を変数にするかを確認する。</b> 今回、コードに直接書いてある次の8つの値を変数に切り出す（5つは<code class="inline">provider.tf</code>、3つは<code class="inline">main.tf</code>にある）。まず<code class="inline">notepad provider.tf</code>と<code class="inline">notepad main.tf</code>で現在のコードを開き、直接書いてある値が下の表の8つであることを確認する。変数名は次のとおりに揃える（以降の手順でこの名前を使う）。<pre>変数名             いまの書き場所
+tenancy_ocid       provider.tf の tenancy_ocid
+user_ocid          provider.tf の user_ocid
+fingerprint        provider.tf の fingerprint
+private_key_path   provider.tf の private_key_path
+region             provider.tf の region
+compartment_id     main.tf の compartment_id
+vcn_cidr_block     main.tf の cidr_block
+vcn_display_name   main.tf の display_name</pre>仕組みは「<b>variables.tf</b>＝変数の宣言（名前と型だけ。値は書かない）」「<b>terraform.tfvars</b>＝実際の値（Terraformが自動で読み込む）」「<b>.tfファイル</b>＝<code class="inline">var.変数名</code>で値を呼び出す」の3点セット。</li><li><b>variables.tfを作る（宣言）。</b> <code class="inline">notepad variables.tf</code>と入力して開き、「新しいファイルを作成しますか？」で「はい」を選ぶ（VS Codeでもよい）。次の内容を書いて保存する。<pre>variable "tenancy_ocid" {
+  type        = string
+  description = "Tenancy OCID"
+}
 
-Plan: 0 to add, 1 to change, 0 to destroy.</pre>読み方：<br>・<code class="inline">will be updated in-place</code>＝作り直しではなく、その場で変更する。<br>・<code class="inline">~ display_name = "tf-vcn" -&gt; "tf-vcn-v2"</code>＝<b><code class="inline">-&gt;</code>の左が今の値、右が変更後の値</b>。コード（tfvars）の1行の変更が、ちゃんと差分として検出されている。<br>・<code class="inline">Plan: 0 to add, 1 to change, 0 to destroy.</code>＝変更1件のみ、削除は0件。<br>・<code class="inline">unchanged attributes hidden</code>のように省略された部分は、変更がない項目。<br><code class="inline">-/+</code>や<code class="inline">must be replaced</code>、<code class="inline">destroy</code>が1以上になっていたら、<b>applyせず</b>、手順5で書き換えた行を元（<code class="inline">tf-vcn</code>）に戻す。<br><b>ここで、OCIコンソールの「ネットワーキング」→「仮想クラウド・ネットワーク」を開き直して（ブラウザを再読み込みして）VCN名を見る。まだ<code class="inline">tf-vcn</code>のままのはず。</b>planは「予告」を表示するだけで、OCIには何も変更を加えていない。</li><li><b>applyで実際に変更する。</b> 次を実行する。<div class="cmd">terraform apply</div>planと同じ差分が表示され、<code class="inline">Do you want to perform these actions?</code>と確認を求められるので、<code class="inline">yes</code>と入力してEnterを押す（<code class="inline">yes</code>以外を入力すると中止される。applyは実行の直前にもう一度planを行い、その内容で確認を求める仕組み）。<code class="inline">Apply complete! Resources: 0 added, 1 changed, 0 destroyed.</code>と表示されれば成功。<br>OCIコンソールのVCN一覧を再読み込みし、名前が<code class="inline">tf-vcn-v2</code>に変わっていることを確認する。これで「plan＝予告（何も変わらない）」「apply＝実行（実際に変わる）」の違いを確認できた。</li><li><b>コードを元に戻す。</b> Terraformでは、変更を元に戻すのも同じ手順で行う。<code class="inline">notepad terraform.tfvars</code>で開き、手順5で書き換えた行を元の<code class="inline">vcn_display_name = "tf-vcn"</code>に戻して保存する。次を順に実行する。<div class="cmd">terraform fmt
+variable "user_ocid" {
+  type        = string
+  description = "User OCID"
+}
+
+variable "fingerprint" {
+  type        = string
+  description = "API key fingerprint"
+}
+
+variable "private_key_path" {
+  type        = string
+  description = "Path to the API private key file"
+}
+
+variable "region" {
+  type        = string
+  description = "OCI region"
+}
+
+variable "compartment_id" {
+  type        = string
+  description = "Compartment OCID where the VCN is created"
+}
+
+variable "vcn_cidr_block" {
+  type        = string
+  description = "CIDR block of the VCN"
+}
+
+variable "vcn_display_name" {
+  type        = string
+  description = "Display name of the VCN"
+}</pre>1つの<code class="inline">variable "名前" { ... }</code>が変数1つの宣言。<code class="inline">type = string</code>は「文字列の値を受け取る」という意味。<code class="inline">default</code>（初期値）は書いていないので、値はこの後の<code class="inline">terraform.tfvars</code>などから必ず渡す必要がある。（<code class="inline">description</code>は説明文で、動作には影響しない。英語で書いているのは、メモ帳の保存形式による文字化けを避けるため）</li><li><b>terraform.tfvarsを作る（実際の値）。</b> まず、現在の値を確認するため、<code class="inline">notepad provider.tf</code>と<code class="inline">notepad main.tf</code>を開いておく（2つのウィンドウを並べると写しやすい）。そのうえで<code class="inline">notepad terraform.tfvars</code>を開いて新規作成し、<b>現在provider.tf／main.tfに書いてある値と同じ値</b>を次の形で書いて保存する。<pre>tenancy_ocid     = "ocid1.tenancy.oc1..xxxx"
+user_ocid        = "ocid1.user.oc1..xxxx"
+fingerprint      = "xx:xx:xx:...:xx"
+private_key_path = "C:/Users/&lt;ユーザー名&gt;/.oci/oci_api_key.pem"
+region           = "ap-tokyo-1"
+compartment_id   = "ocid1.tenancy.oc1..xxxx"
+vcn_cidr_block   = "10.0.0.0/16"
+vcn_display_name = "tf-vcn"</pre>書き方は<code class="inline">変数名 = "値"</code>（値は半角の<code class="inline">"</code>で囲む）。<code class="inline">xxxx</code>や<code class="inline">&lt;ユーザー名&gt;</code>は例なので、必ず自分の実際の値に置き換える。値は<b>手で打ち直さず、provider.tf／main.tfからコピーして貼り付ける</b>（1文字違うだけで、後のplanで差分が出る）。ファイル名は必ず<code class="inline">terraform.tfvars</code>にする（この名前だけ、Terraformが自動で読み込む）。保存後、<code class="inline">dir terraform.tfvars</code>を実行して表示されることを確認する（<code class="inline">terraform.tfvars.txt</code>になっていたら、拡張子の<code class="inline">.txt</code>を外す）。</li><li><b>provider.tfを変数に書き換える。</b> <code class="inline">notepad provider.tf</code>で開き、5つの値を次のように<code class="inline">var.変数名</code>に置き換えて保存する（値そのものはtfvarsに移したので、コードには書かない）。<pre>provider "oci" {
+  tenancy_ocid     = var.tenancy_ocid
+  user_ocid        = var.user_ocid
+  fingerprint      = var.fingerprint
+  private_key_path = var.private_key_path
+  region           = var.region
+}</pre><code class="inline">var.tenancy_ocid</code>は「変数tenancy_ocidの値」を呼び出す書き方で、<b>前後に<code class="inline">"</code>は付けない</b>（付けると、<code class="inline">var.tenancy_ocid</code>という文字列そのものとして扱われる）。</li><li><b>main.tfを変数に書き換える。</b> <code class="inline">notepad main.tf</code>で開き、VCNのブロックを次のように書き換えて保存する。<pre>resource "oci_core_vcn" "main" {
+  compartment_id = var.compartment_id
+  cidr_block     = var.vcn_cidr_block
+  display_name   = var.vcn_display_name
+}</pre>左側（<code class="inline">compartment_id</code>など）はVCNリソースの属性名で変えない。右側だけを<code class="inline">var.変数名</code>に変える。</li><li><b>切り出しが正しくできたか確認する。</b> 次を順に実行する。<div class="cmd">terraform fmt
 terraform validate
-terraform plan</div>今度は<code class="inline">~ display_name = "tf-vcn-v2" -&gt; "tf-vcn"</code>、<code class="inline">Plan: 0 to add, 1 to change, 0 to destroy.</code>と表示される（<code class="inline">-&gt;</code>の左が現在の値、右がコードの値、という読み方は同じ）。確認できたら<code class="inline">terraform apply</code>を実行し、<code class="inline">yes</code>を入力する。コンソールのVCN名が<code class="inline">tf-vcn</code>に戻ったことを確認し、最後にもう一度<code class="inline">terraform plan</code>を実行して<code class="inline">No changes.</code>になることを確認する（<b>この状態に戻してから次の手順に進む</b>）。</li><li><b>「ドリフト」を体験する。</b> ここからは、<b>コードは一切変更せず</b>、OCIコンソール側だけを変更する。<br>(1) OCIコンソールの「ネットワーキング」→「仮想クラウド・ネットワーク」を開き、<code class="inline">tf-vcn</code>をクリックして詳細画面を開く。<br>(2) 詳細画面の「編集」ボタン（見つからない場合は「その他のアクション」メニューの中）を押し、名前を<code class="inline">tf-vcn-console-edit</code>に書き換えて保存する。<br>(3) 画面を再読み込みして、VCN名が<code class="inline">tf-vcn-console-edit</code>に変わっていることを確認する。<br>(4) PowerShellで次を実行する（<code class="inline">terraform.tfvars</code>は触っていないので、コード上の名前は<code class="inline">tf-vcn</code>のまま）。<div class="cmd">terraform plan</div>コードには何も書いていないのに、次のような表示が出る。<pre>Note: Objects have changed outside of Terraform
-
-  # oci_core_vcn.main has changed
-  ~ resource "oci_core_vcn" "main" {
-      ~ display_name = "tf-vcn" -&gt; "tf-vcn-console-edit"
-        # (xx unchanged attributes hidden)
-    }
-（中略）
-  # oci_core_vcn.main will be updated in-place
-  ~ resource "oci_core_vcn" "main" {
-      ~ display_name = "tf-vcn-console-edit" -&gt; "tf-vcn"
-        # (xx unchanged attributes hidden)
-    }
-
-Plan: 0 to add, 1 to change, 0 to destroy.</pre>読み方：<br>・上の<code class="inline">Note: Objects have changed outside of Terraform</code>のブロック＝「前回のapplyのあとに、Terraformの外（コンソール）で値が変えられていた」という検出結果。<br>・下の<code class="inline">will be updated in-place</code>のブロック＝「コードの内容に戻すために、これから変更する予定」。<code class="inline">-&gt;</code>の右の<code class="inline">tf-vcn</code>がコードの値。<br>これが「ドリフト」（コードと実際の状態のズレ）。Terraformはplanのたびに、OCI上の実際の状態を読みに行ってコードと比べているため、コンソールから直接変更した内容も検出できる。実務では、コンソールからの手動変更がこのようにコードとのズレを生むため、Terraformで管理しているリソースはコンソールから直接触らない。</li><li><b>applyでコード側の状態に戻す。</b> 次を実行し、<code class="inline">yes</code>と入力する。<div class="cmd">terraform apply</div><code class="inline">Apply complete! Resources: 0 added, 1 changed, 0 destroyed.</code>と表示されたら、OCIコンソールを再読み込みして、VCN名が<code class="inline">tf-vcn</code>に戻っていることを確認する。コンソールで変えた内容が、コードの内容で上書きされたことになる。</li><li><b>最後に状態を確認する。</b> 次を実行し、<code class="inline">No changes. Your infrastructure matches the configuration.</code>と表示されることを確認する。<div class="cmd">terraform plan</div>あわせて、<code class="inline">notepad terraform.tfvars</code>で<code class="inline">vcn_display_name = "tf-vcn"</code>になっていること、OCIコンソールのVCN名が<code class="inline">tf-vcn</code>であることを確認する（<code class="inline">tf-vcn-v2</code>や<code class="inline">tf-vcn-console-edit</code>が残っていないこと）。</li></ol>
+terraform plan</div><code class="inline">validate</code>が<code class="inline">Success! The configuration is valid.</code>になり、<code class="inline">plan</code>が手順2と同じ<code class="inline">No changes. Your infrastructure matches the configuration.</code>になれば成功。「値の置き場所を変えただけで、中身は何も変わっていない」ことがplanで証明できる。<br>・<code class="inline">-/+</code>や<code class="inline">must be replaced</code>、<code class="inline">~</code>の差分が出た場合：tfvarsの値が、最初にapplyしたときの値と違っている。<b>applyせず</b>（VCNが作り直されるおそれがある）、<code class="inline">terraform state show oci_core_vcn.main</code>で実際の値を確認して、tfvarsを合わせ直す。<br>・<code class="inline">Enter a value:</code>と入力を求められた場合：tfvarsから値が渡っていない。<code class="inline">Ctrl+C</code>で中断し、tfvarsのファイル名と、変数名のスペルが宣言と一致しているかを確認する。</li><li><b>変数の優先順位を体感する。</b> tfvarsは変更せず、コマンドで別の値を渡して、どちらが使われるかを確認する（PowerShellで次を実行）。<div class="cmd">terraform plan -var="vcn_display_name=tf-vcn-override"</div>表示された差分の中で、<code class="inline">display_name = "tf-vcn" -&gt; "tf-vcn-override"</code>のように、<code class="inline">-var</code>で渡した値に変わる予定になっていれば成功（<code class="inline">Plan: 0 to add, 1 to change, 0 to destroy.</code>）。tfvarsには<code class="inline">tf-vcn</code>と書いてあるのに、<code class="inline">-var</code>の値が優先されたことが分かる。これは確認だけなので、<b>applyはしない</b>。確認後、<code class="inline">terraform plan</code>（<code class="inline">-var</code>なし）を実行し、<code class="inline">No changes.</code>に戻ることを確認する。優先順位は、弱い順に「default → 環境変数<code class="inline">TF_VAR_名前</code> → terraform.tfvars → *.auto.tfvars → <code class="inline">-var</code>／<code class="inline">-var-file</code>」で、後に書いたものが勝つ。CI/CDや複数人開発で「どの値が実際に使われるか」を判断するときに必要な知識になる。</li><li><b>最後にファイルを確認する。</b> <code class="inline">dir *.tf*</code>を実行し、<code class="inline">main.tf</code>、<code class="inline">provider.tf</code>、<code class="inline">variables.tf</code>、<code class="inline">terraform.tfvars</code>の4つがあることを確認する（<code class="inline">outputs.tf</code>は来週のWeek 2で扱う。<code class="inline">check.tf</code>は無くてよい）。</li></ol>
       </div>
       <div class="block">
         <div class="block-label">⚠️ つまずきやすいポイント</div>
-        <div class="warn-box"><ul><li><code class="inline">terraform apply</code>の前に、必ず<code class="inline">plan</code>の最終行（<code class="inline">Plan: ○ to add, ○ to change, ○ to destroy.</code>）を見る。今週の変更はVCNの名前だけなので、想定は<code class="inline">0 to add, 1 to change, 0 to destroy</code>。<code class="inline">destroy</code>が1以上、または<code class="inline">-/+</code>・<code class="inline">must be replaced</code>が出た場合は、applyせずにコードを元に戻す（VCNが作り直されると、11月に作ったSubnetなどにも影響する）。</li><li>手順5で書き換えた<code class="inline">terraform.tfvars</code>を、元（<code class="inline">tf-vcn</code>）に戻し忘れない。<code class="inline">tf-vcn-v2</code>のままにすると、この先のWeekでも差分が出続ける。手順7で戻して「No changes」を確認しておくこと。</li><li>コンソールには2つのVCN（10月の手動作成分と、Terraformで作った<code class="inline">tf-vcn</code>）が並んでいる。ドリフト体験で名前を変えるのは<code class="inline">tf-vcn</code>の方。間違えて手動作成分の名前を変えても、Terraformは何も検出しない。</li><li>ドリフトの手順で差分が出ない場合は、(a) コンソールでの名前の変更が保存されていない（画面を再読み込みして確認）、(b) <code class="inline">terraform.tfstate</code>のある作業フォルダ（<code class="inline">oci-learning-log</code>）以外で<code class="inline">plan</code>を実行している、のどちらかを疑う。なお、コードに書いていない項目（タグなど）は、コンソールで変更しても差分にならない場合がある。今回は、コードに書いてある<code class="inline">display_name</code>を使うので差分が出る。</li><li>実務でドリフトを見つけたときは、「コード側を実際の状態に合わせて直す」か「<code class="inline">apply</code>でコード側の状態に戻す」かを選ぶことになる。今回は、コードが正しい状態（正）なので、後者でコードの内容に戻した。どちらが正しいかを確認せずに<code class="inline">apply</code>すると、必要な手動変更を消してしまうおそれがある。</li><li><code class="inline">terraform apply</code>の確認で<code class="inline">yes</code>以外（<code class="inline">y</code>など）を入力すると、何も実行されずに終了する。実行する場合は、半角で<code class="inline">yes</code>と入力する。</li></ul></div>
+        <div class="warn-box"><ul><li><code class="inline">terraform.tfvars</code>には環境固有の値や、場合によっては秘密情報を含めるため、Gitでは絶対に管理しない（テナンシーOCID等のOCID自体はパスワードのような秘密情報ではないが、このファイルには秘密情報を含める可能性があるため、ファイル単位でGit管理対象から外す）。まだGitを導入していない状態だが（Git導入はWeek 4）、Week 4で<code class="inline">.gitignore</code>を作ったら真っ先にこのファイルを登録すること。</li><li><code class="inline">var.xxx</code>には<code class="inline">"</code>を付けない。<code class="inline">region = "var.region"</code>と書くと、リージョン名が「var.region」という文字列になり、エラーになる。</li><li><code class="inline">Reference to undeclared input variable</code>と出たら、<code class="inline">var.名前</code>の名前が<code class="inline">variables.tf</code>の宣言と違っている（スペルミス）か、宣言を書き忘れている。</li><li><code class="inline">Warning: Value for undeclared variable</code>と出たら、<code class="inline">terraform.tfvars</code>にあって<code class="inline">variables.tf</code>に宣言が無い変数がある。名前のスペルを揃える。</li><li>切り出しのあとのplanで<code class="inline">-/+</code>（作り直し）や<code class="inline">~</code>（変更）が出たら、applyしない。<code class="inline">cidr_block</code>のように、変更するとVCNが作り直しになる値がある。作り直しになると、Week 3で作るSubnetなど、VCNにぶら下がるリソースにも影響する。</li><li><code class="inline">terraform.tfvars</code>は、作業フォルダ直下に置く。別のフォルダや<code class="inline">terraform.tfvars.txt</code>だと読み込まれず、<code class="inline">Enter a value:</code>と入力を求められる。</li></ul></div>
       </div>
       <div class="block">
         <div class="block-label">✅ 成果物</div>
-        <label class="deliverable" data-key="w1"><input type="checkbox"><span class="dtext"><span class="dnone">なし（plan/applyの差分確認とドリフト体験が完了条件。最後に<code class="inline">terraform plan</code>が「No changes」の状態に戻っていること）</span></span></label>
+        <label class="deliverable" data-key="w1"><input type="checkbox"><span class="dtext"><span class="dnone">なし（variables.tfへの切り出し、terraform.tfvarsの作成、切り出し後のplanが「No changes」になることの確認が完了条件）</span></span></label>
         
       </div>
       <div class="block">
         <div class="block-label">🧭 到達判定</div>
-        <div class="criteria-box"><ul><li>planの差分の記号（<code class="inline">+</code>・<code class="inline">-</code>・<code class="inline">~</code>・<code class="inline">-/+</code>）の意味と、<code class="inline">-&gt;</code>の左右が何を表すか説明できる</li><li>planが「予告」で、applyが「実行」であることを、コンソールでVCN名が変わるタイミングの違いとあわせて説明できる</li><li>コード側を変更していないのにplanで差分が出る「ドリフト」が何によって起きるか説明できる</li></ul></div>
+        <div class="criteria-box"><ul><li>ハードコードされた値をvariableに切り出す理由を説明できる</li><li>OCIDのような識別子と、パスワード等の秘密情報の違いを説明できる</li><li>variables.tf／terraform.tfvars／var.変数名の3つが、それぞれ何をするものか説明できる</li><li>変数に切り出したあと、planが「No changes」になることで何が確認できるか説明できる</li><li>-varオプションで渡した値がtfvarsファイルより優先される、という変数の優先順位を説明できる</li></ul></div>
       </div>
-    </div>
+    <div class="block"><div class="block-label saa-label">📘 並行タスク：SAA-C03 座学ロードマップ（基本1〜1.5h、Black Belt週は最大2h程度が目安）</div><div class="saa-block"><div class="saa-theme"><span class="saa-week-num">Week 13</span>セキュリティ設計の深化</div><table class="saa-breakdown"><tr><th style="width:64px">時間配分</th><th>学習内容</th></tr><tr><td class="time">30分</td><td>IAM Policy／Resource Policy／KMS／暗号化／最小権限</td></tr><tr><td class="time">25分</td><td>Secrets Manager／Parameter Store（概要）／S3のセキュリティ／VPCのセキュリティ</td></tr><tr><td class="time">+10分</td><td>Organizations／SCP（概要）</td></tr><tr><td class="time">+15分</td><td>Black Beltで理解を補強（PDF中心、必要に応じて動画）</td></tr></table><div class="saa-sub">比較・判断軸（20分）</div><ul class="saa-req"><li>IAM Policy vs Resource Policy</li><li>Secrets Manager vs Parameter Store</li><li>Security Group vs NACL</li><li>暗号化が必要なデータと、鍵管理の考え方</li><li>IAM Policy vs SCP（ユーザー・ロールへの権限設定 vs Organizations配下のアカウントに対する最大権限のガードレール）</li></ul><div class="saa-sub">典型要件</div><ul class="saa-req"><li>DBやアプリケーションの認証情報をコードに埋め込みたくない → Secrets Manager等</li><li>AWSリソースへのアクセス権を必要最小限にしたい → IAM Policy／Role</li><li>保存データを暗号化し、鍵を管理したい → KMS</li><li>複数のAWSアカウントをまとめて管理したい → AWS Organizations</li><li>組織配下のアカウントで利用できるAWSサービスや操作を組織レベルで制限したい → SCP（Service Control Policies）</li></ul><div class="saa-goal"><b>到達目標：</b>認証・認可・暗号化・秘密情報管理を分けて考え、セキュリティ要件に応じたAWSサービスを選択できるようにする。あわせて、アカウント内の権限（IAM Policy）と組織全体のガードレール（SCP）の違いを区別できるようにする。</div><div class="saa-material"><b>使う教材（直接リンク）</b><ul class="materials"><li>① <a href="https://skillbuilder.aws/learn/FZFYKYYV19/domain-1-review-aws-certified-solutions-architect--associate-saac03--/M59ZEVK77H?parentId=5ES5T3BM13" target="_blank" rel="noopener">SAA-C03 Exam Prep Plan — Domain 1 Review（Secure Architectures）</a>（今週のテーマに関連するSAA-C03の要求事項を確認するための補助教材／AWS Skill Builder・Exam Prep／暗号化・秘密情報管理・組織ガバナンスに関する部分を中心に確認）</li><li>② <a href="https://pages.awscloud.com/rs/112-TZM-766/images/AWS-Black-Belt_2023_AWS-Secrets-Manager_0901_v1.pdf" target="_blank" rel="noopener">AWS Black Belt: AWS Secrets Manager（PDF）</a></li><li>③ <a href="https://pages.awscloud.com/rs/112-TZM-766/images/AWS-Black-Belt_2026_AWS-Organizations_0331_v1.pdf" target="_blank" rel="noopener">AWS Black Belt: AWS Organizations 基礎編（PDF）</a></li></ul></div><div class="saa-blackbelt"><span class="bb-level recommend">Black Belt: 推奨</span>セキュリティ設計の深化（GuardDuty、Security Hub等）はBlack Belt PDFで全体像を掴んでおくと問題演習が進めやすい。</div></div></div></div>
     <div class="week" id="w2">
-      <div class="week-head"><span class="week-num">WEEK 02</span><span class="week-hours">目安 4.5h</span><h3>state管理</h3></div>
+      <div class="week-head"><span class="week-num">WEEK 02</span><span class="week-hours">目安 4〜4.5h</span><h3>Output（出力値の定義）、AWS実機ハンズオン②（IAM Role→EC2→S3・60〜90分）</h3></div>
       <div class="block">
         <div class="block-label">🎯 このタスクのゴール</div>
-        <div class="goal-text">Terraformが「今何を管理しているか」を自分で確認できるようになる。</div>
+        <div class="goal-text">applyの結果得られる値を、あとから確認できるようにする。</div>
       </div>
       <div class="block">
         <div class="block-label">📚 使う教材</div>
-        <ul class="materials"><li>Terraform公式ドキュメント（State） <a href="https://developer.hashicorp.com/terraform/language/state" target="_blank" rel="noopener">https://developer.hashicorp.com/terraform/language/state</a></li></ul>
+        <ul class="materials"><li>Oracle公式チュートリアル「変数の宣言」「出力値の照会」 <a href="https://docs.oracle.com/ja-jp/iaas/developer-tutorials/tutorials/tf-provider/04-summary.htm" target="_blank" rel="noopener">https://docs.oracle.com/ja-jp/iaas/developer-tutorials/tutorials/tf-provider/04-summary.htm</a></li></ul>
       </div>
       <div class="block">
         <div class="block-label">🛠 具体的な手順</div>
-        <ol class="steps"><li>PowerShell（またはコマンドプロンプト）を開く（スタートメニューで「PowerShell」と検索して起動。普段VS Codeを使っているなら内蔵のターミナル機能でもよい）。作業フォルダ（<code class="inline">cd $env:USERPROFILE\oci-learning-log</code>）に移動してから、以降の操作を行う。</li><li><code class="inline">terraform.tfstate</code>の中身をエディタで開いて構造（JSON形式）を確認する。</li><li><code class="inline">terraform state list</code>で管理対象のリソース一覧を表示する。</li><li><code class="inline">terraform state show &lt;resource&gt;</code>で特定リソースの詳細を確認する。</li><li><b>OCI CLIとも突き合わせる。</b> <code class="inline">oci compute instance list --compartment-id &lt;コンパートメントOCID&gt;</code>を実行し、<code class="inline">terraform state list</code>の内容と実際に作成されているリソースが一致していることを確認する。</li><li><b>「なぜstateを直接編集してはいけないか」を理解する。</b> <code class="inline">terraform apply</code>実行後にフォルダ内へ自動生成される<code class="inline">terraform.tfstate.backup</code>（1つ前の状態のバックアップ）の存在を確認し、これが「stateファイルは壊れやすく、手で編集するとコードと実際のリソースの対応が壊れる」ことへの保険であることをメモにまとめる。</li></ol>
+        <ol class="steps"><li>PowerShell（またはコマンドプロンプト）を開く（スタートメニューで「PowerShell」と検索して起動。普段VS Codeを使っているなら内蔵のターミナル機能でもよい）。作業フォルダ（<code class="inline">cd $env:USERPROFILE\oci-learning-log</code>）に移動してから、以降の操作を行う。</li><li><code class="inline">outputs.tf</code>にVCNのOCIDを出力する設定を書き、<code class="inline">terraform apply</code>後に値が表示されることを確認する。</li></ol>
       </div>
       <div class="block">
         <div class="block-label">⚠️ つまずきやすいポイント</div>
-        <div class="warn-box"><ul><li>tfstateには接続情報などの機密が平文で入ることがあるため、Gitには絶対に含めない（11月にすでに.gitignoreへ追加済みのはず）。</li></ul></div>
-      </div>
-      <div class="block">
-        <div class="block-label">🧪 手動リソースのTerraform管理化（import）</div>
-        <div class="goal-text">Terraformを使わずに手動で作ったリソースを<code class="inline">terraform import</code>でstateに取り込み、コードと実際のリソースを一致させる。</div>
-        <ol class="steps"><li><b>手動でリソースを1つ作る。</b> OCIコンソールから、Terraformではまだ管理していない新しいNSG（例：<code class="inline">manual-test-nsg</code>）を1つ手動で作成する（Ingressルールは動作確認用にTCP 8080番を1つ追加する程度でよい）。</li><li><b>コード側に受け皿を用意する。</b> <code class="inline">main.tf</code>に、作成したNSGと同じ内容（名前・所属VCN等）を指す<code class="inline">resource "oci_core_network_security_group" "manual_test" {...}</code>ブロックを追加する（この時点ではまだstateに紐づいていない）。</li><li><b>importする。</b><div class="cmd">terraform import oci_core_network_security_group.manual_test &lt;NSGのOCID&gt;</div>NSGのOCIDはOCIコンソールの詳細画面からコピーする。</li><li><b>一致を確認する。</b> <code class="inline">terraform plan</code>を実行し、差分が（ほぼ）出ないことを確認する。差分が出た場合は、コード側の設定値が実際のリソースと食い違っているので、表示された差分を1つずつ実際の値に合わせて書き直す。</li><li><b>後片付けする。</b> 確認できたら、手順2で追加した<code class="inline">resource "oci_core_network_security_group" "manual_test" {...}</code>ブロックを<code class="inline">main.tf</code>から削除する。<code class="inline">terraform plan</code>を再度実行し、このNSGが削除対象として表示されることを確認したうえで、<code class="inline">terraform apply</code>を実行して実体を削除する。コードとstateの両方から消すことで、次回以降のplanで再作成対象として残らないようにする。学習用に増やしたリソースはその都度整理する習慣をつける。</li></ol>
-      </div>
-      <div class="block">
-        <div class="block-label">⚠️ つまずきやすいポイント</div>
-        <div class="warn-box"><ul><li><code class="inline">-target</code>オプションは、依存関係を無視するものではなく、指定したリソースを中心とした部分的なplan／apply／destroyを行うためのオプション。指定したリソースが依存する他のリソースは通常どおり考慮されるが、対象範囲を絞る分、コード全体の依存関係と実際に適用された状態がずれやすくなる。特に<code class="inline">destroy -target</code>で実体だけを削除すると、コードにはresourceブロックが残ったままになり、次回の<code class="inline">plan</code>で再作成対象として検出されてしまう（今回の後片付けでコードからブロックごと削除したのはそのため）。通常の運用では<code class="inline">-target</code>なしの<code class="inline">terraform plan</code>／<code class="inline">apply</code>／<code class="inline">destroy</code>を基本とし、<code class="inline">-target</code>は障害対応や復旧作業など、限定的な用途に絞って使う、という位置づけで覚えておく。</li></ul></div>
+        <div class="warn-box"><ul><li><code class="inline">terraform.tfvars</code>には、テナンシーOCIDなどの識別子や、認証情報などの秘密情報が値として入る。OCID自体はパスワードのような秘密情報ではないが、ファイルの中身を個別に選別するのは煩雑なため、<code class="inline">terraform.tfvars</code>ごとGitでは管理しないのが基本。まだGitを導入していない状態だが（Git導入は再来週）、導入時に<code class="inline">.gitignore</code>へ真っ先に登録すること。</li></ul></div>
       </div>
       <div class="block">
         <div class="block-label">✅ 成果物</div>
-        <label class="deliverable" data-key="w2"><input type="checkbox"><span class="dtext"><span class="dnone">なし（state確認とimport演習の実施が完了条件）</span></span></label>
+        <label class="deliverable" data-key="w2"><input type="checkbox"><span class="dtext">variables.tf／outputs.tf（oci-learning-logリポジトリ用のローカル作業フォルダに保存し、動作確認できていればOK。pushはweek4にまとめて行う）</span></label>
         
       </div>
       <div class="block">
         <div class="block-label">🧭 到達判定</div>
-        <div class="criteria-box"><ul><li>tfstateを直接編集してはいけない理由を説明できる</li><li>terraform importで手動作成したリソースをTerraform管理下に置く流れを説明できる</li></ul></div>
+        <div class="criteria-box"><ul><li>outputsが何のために使われる仕組みか説明できる</li><li>applyの結果として値が画面に表示されることを確認できる</li></ul></div>
       </div>
-    </div>
+      <div class="block">
+        <div class="block-label">🖥️ 追加ハンズオン：AWS実機タッチ②（IAM Role → EC2 → S3、60〜90分）</div>
+        <div class="goal-text">10月week4のAWS実機タッチ（VPC・Subnet・EC2）とは別に、SAAで頻出する「IAM Role → EC2 → S3」の権限委譲パターンを、AWS Consoleで実際に触って体験する。大規模な環境構築は行わず、Terraformでコード化する前にAWSの実体を確認することが目的。</div>
+      </div>
+      <div class="block">
+        <div class="block-label">🛠 具体的な手順</div>
+        <ol class="steps"><li>10月week4で作成したAWSアカウントでログインする（無料利用枠の期限内であることを確認）。</li><li><b>IAM Roleを作成する。</b>「IAM」→「ロール」→「ロールを作成」で、信頼されたエンティティに「AWSのサービス」→「EC2」を選び、許可ポリシーに<code class="inline">AmazonS3ReadOnlyAccess</code>をアタッチする。</li><li><b>S3バケットを作成する。</b> バケット名は一意な名前にし、リージョンはEC2と合わせる。適当なテキストファイルを1つアップロードしておく。</li><li><b>EC2インスタンスを起動する。</b> AMIは「Ubuntu Server」、インスタンスタイプは<code class="inline">t3.micro</code>を選ぶ（作成前にコンソール上で「無料利用枠の対象」の表記があることを確認する）。「IAMロール」欄に手順2で作成したロールを指定する。セキュリティグループはSSH（22番）を自分のグローバルIPからのみ許可する。</li><li><b>AWS CLIが使える状態か確認する。</b> Ubuntu ServerのAMIにはAWS CLIがプリインストールされていないことがあるため、SSH接続後まず<div class="cmd">aws --version</div>を実行する。コマンドが見つからない場合は<div class="cmd">sudo apt update
+sudo apt install -y awscli</div>でインストールし、再度<code class="inline">aws --version</code>でバージョンが表示されることを確認する。</li><li><b>IAM Roleによる認証を確認する。</b> アクセスキーは一切入力せず、<div class="cmd">aws sts get-caller-identity</div>を実行し、IAM Role（Instance Profile）経由で認証された自分自身の情報（Account／Arn等）が表示されることを確認する。ここでAccess KeyやSecret Keyをインスタンス内に保存する操作は行わない。</li><li><b>S3にアクセスする。</b> 認証確認ができたら<div class="cmd">aws s3 ls
+aws s3 cp s3://バケット名/ファイル名 .</div>を実行し、IAM Roleによる権限委譲だけでS3にアクセスできることを確認する。</li><li><b>確認できたらリソースを削除する。</b> EC2インスタンスを終了し、S3バケットも削除する。</li></ol>
+      </div>
+      <div class="block">
+        <div class="block-label">✅ 成果物</div>
+        <label class="deliverable" data-key="w2-handson"><input type="checkbox"><span class="dtext"><span class="dnone">なし（体験が目的のため提出物はなし）</span></span></label>
+        
+      </div>
+      <div class="block">
+        <div class="block-label">🧭 到達判定</div>
+        <div class="criteria-box"><ul><li>IAM Roleを使うことで、アクセスキーをEC2に埋め込まずS3へアクセスできる理由を説明できる</li></ul></div>
+      </div>
+    <div class="block"><div class="block-label saa-label">📘 並行タスク：SAA-C03 座学ロードマップ（基本1〜1.5h、Black Belt週は最大2h程度が目安）</div><div class="saa-block"><div class="saa-theme"><span class="saa-week-num">Week 14</span>ネットワーク設計の深化</div><table class="saa-breakdown"><tr><th style="width:64px">時間配分</th><th>学習内容</th></tr><tr><td class="time">30分</td><td>VPC Endpoint（Gateway Endpoint・Interface Endpointの2方式）／PrivateLink（Interface Endpointの基盤技術）</td></tr><tr><td class="time">25分</td><td>VPC Peering／VPN／Transit Gateway（概要）</td></tr><tr><td class="time">+20〜30分</td><td>Black Beltで理解を補強（PDF中心、必要に応じて動画）</td></tr></table><div class="saa-sub">比較・判断軸（20分）</div><ul class="saa-req"><li>インターネットを経由せずAWSサービスへアクセスする方法</li><li>VPC間接続の選択</li><li>PrivateLink／VPC Peering／VPNの役割の違い</li></ul><div class="saa-sub">典型要件</div><ul class="saa-req"><li>VPC内のEC2からS3へPrivateにアクセスしたい → VPC Endpoint</li><li>異なるVPC間を接続したい → VPC Peering等</li><li>オンプレミスとAWSを接続したい → VPN等</li><li>多数のVPCを集中的に接続・管理したい → Transit Gateway（概要）</li></ul><div class="saa-goal"><b>到達目標：</b>「外部インターネットを経由させるか」「VPC同士をどう接続するか」という要件から、適切なネットワーク接続方式を選択できるようにする。</div><div class="saa-material"><b>使う教材（直接リンク）</b><ul class="materials"><li>① <a href="https://skillbuilder.aws/learn/FZFYKYYV19/domain-1-review-aws-certified-solutions-architect--associate-saac03--/M59ZEVK77H?parentId=5ES5T3BM13" target="_blank" rel="noopener">SAA-C03 Exam Prep Plan — Domain 1 Review（Secure Architectures）</a>（今週のテーマに関連するSAA-C03の要求事項を確認するための補助教材／AWS Skill Builder・Exam Prep／プライベート接続・VPC間接続に関する部分を中心に確認）</li><li>② <a href="https://pages.awscloud.com/rs/112-TZM-766/images/AWS-Black-Belt_2025_AWS-PrivateLink_0707_v1.pdf" target="_blank" rel="noopener">AWS Black Belt: PrivateLink and Lattice – AWS PrivateLink編（PDF）</a></li><li>③ <a href="https://pages.awscloud.com/rs/112-TZM-766/images/20191113_AWS-BlackBelt_Transit_Gateway.pdf" target="_blank" rel="noopener">AWS Black Belt: AWS Transit Gateway（PDF）</a></li><li>④ <a href="https://pages.awscloud.com/rs/112-TZM-766/images/202110_AWS_Black_Belt_Site-to-Site_VPN.pdf" target="_blank" rel="noopener">AWS Black Belt: AWS Site-to-Site VPN（PDF）</a></li></ul></div><div class="saa-blackbelt"><span class="bb-level strong">Black Belt: かなり推奨</span>VPC Endpoint／VPC Peering／VPN／Transit Gatewayは接続パターンが多く混同しやすい。PDFで整理し、必要なら動画も見る。</div></div></div></div>
     <div class="week" id="w3">
-      <div class="week-head"><span class="week-num">WEEK 03</span><span class="week-hours">目安 3.5h</span><h3>data source、Computeまで含めた一連の構築</h3></div>
+      <div class="week-head"><span class="week-num">WEEK 03</span><span class="week-hours">目安 3.5〜4h</span><h3>Subnet構築（Public/Private）</h3></div>
       <div class="block">
         <div class="block-label">🎯 このタスクのゴール</div>
-        <div class="goal-text">既存の情報（可用性ドメイン）を参照しながら、Compute（コンピュート）インスタンスまでコードで構築する。</div>
+        <div class="goal-text">10月に手動で作ったPublic/Private Subnetと同じ構成を、11月にTerraformで新規構築したVCN（10月の手動VCNとは別物）の中に、コードとして再現する。</div>
       </div>
       <div class="block">
         <div class="block-label">📚 使う教材</div>
-        <ul class="materials"><li>Terraform公式ドキュメント（Data Sources） <a href="https://developer.hashicorp.com/terraform/language/data-sources" target="_blank" rel="noopener">https://developer.hashicorp.com/terraform/language/data-sources</a></li></ul>
+        <ul class="materials"><li>Oracle公式チュートリアル「インフラストラクチャの変更」 <a href="https://docs.oracle.com/ja-jp/iaas/developer-tutorials/tutorials/tf-provider/05-summary.htm" target="_blank" rel="noopener">https://docs.oracle.com/ja-jp/iaas/developer-tutorials/tutorials/tf-provider/05-summary.htm</a></li></ul>
       </div>
       <div class="block">
         <div class="block-label">🛠 具体的な手順</div>
-        <ol class="steps"><li>PowerShell（またはコマンドプロンプト）を開く（スタートメニューで「PowerShell」と検索して起動。普段VS Codeを使っているなら内蔵のターミナル機能でもよい）。作業フォルダ（<code class="inline">cd $env:USERPROFILE\oci-learning-log</code>）に移動してから、以降の操作を行う。</li><li><code class="inline">data "oci_identity_availability_domains" "ads" {}</code>のようなdata sourceを定義し、可用性ドメインの一覧を取得する。</li><li><b>Terraform apply前に、10月から使い続けている手動のCompute（Public Subnet、<code class="inline">VM.Standard.E2.1.Micro</code>）をOCIコンソールから削除する。</b> このあとTerraformで作成するComputeも同じE2.1.Microを使うため、手動作成分を残したままだと、テナンシー全体でのE2.1.Micro上限（最大2台）に抵触しうる。先に手動分を片付けてからapplyする。</li><li>取得した値を使って<code class="inline">oci_core_instance</code>リソースを記述する（<code class="inline">subnet_id</code>には11月に構築したTerraform管理VCNのPublic Subnetを指定する）。Shapeは、直前に削除した10月の手動Computeと同じ<code class="inline">VM.Standard.E2.1.Micro</code>にする。これにより「手動で作ったComputeを、同じ内容のままTerraformコードとして再構築する」という移行の流れを体験する。</li><li><code class="inline">terraform fmt</code>と<code class="inline">terraform validate</code>でコードを整形・検証してから、<code class="inline">terraform apply</code>でVCN〜Compute（コンピュート）までを一連の実行で構築できることを確認する。</li></ol>
+        <ol class="steps"><li>PowerShell（またはコマンドプロンプト）を開く（スタートメニューで「PowerShell」と検索して起動。普段VS Codeを使っているなら内蔵のターミナル機能でもよい）。作業フォルダ（<code class="inline">cd $env:USERPROFILE\oci-learning-log</code>）に移動してから、以降の操作を行う。</li><li><code class="inline">oci_core_subnet</code>リソースをPublic/Privateの2つ分コード化する（<code class="inline">vcn_id</code>には11月WEEK04でapplyしたTerraform管理VCNのIDを指定し、10月の手動VCNは対象にしない）。applyする。</li><li><b>CLIでも確認する。</b> <code class="inline">oci network subnet list --compartment-id &lt;コンパートメントOCID&gt;</code>を実行し、コンソールとCLIの両方でSubnetが作成されていることを確認する。</li></ol>
       </div>
       <div class="block">
         <div class="block-label">✅ 成果物</div>
-        <label class="deliverable" data-key="w3"><input type="checkbox"><span class="dtext">Terraformコード一式（Compute追加分。oci-learning-logリポジトリ用のローカル作業フォルダに保存し、apply確認できていればOK。次のpush機会にまとめてpushする）</span></label>
+        <label class="deliverable" data-key="w3"><input type="checkbox"><span class="dtext"><span class="dnone">なし（Subnetのコード化とapply確認が完了条件）</span></span></label>
         
       </div>
       <div class="block">
         <div class="block-label">🧭 到達判定</div>
-        <div class="criteria-box"><ul><li>data sourceで取得した値を使ってComputeを構築できる</li><li>手動作成分を先に削除してからapplyする必要がある理由を説明できる</li></ul></div>
+        <div class="criteria-box"><ul><li>Public/Private Subnetをコードで再現できる</li><li>コンソールとCLIの両方でリソースの存在を確認できる</li></ul></div>
       </div>
-    </div>
+    <div class="block"><div class="block-label saa-label">📘 並行タスク：SAA-C03 座学ロードマップ（基本1〜1.5h、Black Belt週は最大2h程度が目安）</div><div class="saa-block"><div class="saa-theme"><span class="saa-week-num">Week 15</span>サーバーレス・疎結合アーキテクチャ</div><table class="saa-breakdown"><tr><th style="width:64px">時間配分</th><th>学習内容</th></tr><tr><td class="time">30分</td><td>典型構成：API Gateway → Lambda → SQS → Lambda → DynamoDB</td></tr><tr><td class="time">25分</td><td>SNS／EventBridge／Lambdaとの連携／非同期処理</td></tr><tr><td class="time">+20〜30分</td><td>Black Beltで理解を補強（PDF中心、必要に応じて動画）</td></tr></table><div class="saa-sub">比較・判断軸（20分）</div><ul class="saa-req"><li>同期 vs 非同期</li><li>SQS vs SNS vs EventBridge</li><li>疎結合／リトライ／障害分離／スケーラビリティ</li></ul><div class="saa-sub">典型要件</div><ul class="saa-req"><li>APIへのリクエストと後続処理を切り離したい → SQS等による非同期化</li><li>1つのイベントを複数の処理へ配信したい → SNS／EventBridge</li><li>サーバー管理を極力なくし、負荷に応じて自動スケールしたい → Lambda</li><li>大量アクセスに対して処理系を疎結合にし、障害の影響範囲を限定したい → SQS等を利用</li></ul><div class="saa-goal"><b>到達目標：</b>複数のAWSサービスを単体で覚えるのではなく、要件に応じて組み合わせ、可用性・性能・運用負荷を考慮したアーキテクチャを説明できるようにする。</div><div class="saa-material"><b>使う教材（直接リンク）</b><ul class="materials"><li>① <a href="https://skillbuilder.aws/learn/1V5S9MC41R/domain-3-review-aws-certified-solutions-architect--associate-saac03--/2YCF5FYZYQ?parentId=5ES5T3BM13" target="_blank" rel="noopener">SAA-C03 Exam Prep Plan — Domain 3 Review（High-Performing Architectures）</a>（今週のテーマに関連するSAA-C03の要求事項を確認するための補助教材／AWS Skill Builder・Exam Prep／サーバーレス・イベント駆動アーキテクチャに関する部分を中心に確認）</li><li>② <a href="https://pages.awscloud.com/rs/112-TZM-766/images/20200610_AWS_BlackBelt_Building_Event_driven_Architectures_on_AWS.pdf" target="_blank" rel="noopener">AWS Black Belt: サーバーレスイベント駆動アーキテクチャ（PDF）</a></li></ul></div><div class="saa-blackbelt"><span class="bb-level strong">Black Belt: かなり推奨</span>サーバーレス・疎結合アーキテクチャは複数サービスの連携理解が必要なテーマ。PDF＋動画でアーキテクチャ全体の流れを掴んでおく。</div></div></div></div>
     <div class="week" id="w4">
-      <div class="week-head"><span class="week-num">WEEK 04</span><span class="week-hours">目安 3h</span><h3>Terraformコード拡張演習＆振り返り・学びメモ作成</h3></div>
+      <div class="week-head"><span class="week-num">WEEK 04</span><span class="week-hours">目安 4〜4.5h</span><h3>Git管理開始</h3></div>
       <div class="block">
         <div class="block-label">🎯 このタスクのゴール</div>
-        <div class="goal-text">WEEK03で構築したCompute環境をvariableで拡張する小演習を行い、手を動かした状態のまま10〜12月をふりかえって自分の言葉で短くまとめる。公開記事を書くことが目的ではなく、「振り返って言語化する」こと自体が目的。</div>
+        <div class="goal-text">ここまでのコードをGitHubで管理できるようにする。</div>
       </div>
       <div class="block">
         <div class="block-label">📚 使う教材</div>
-        <ul class="materials"><li><code class="inline">study-notes</code>リポジトリ（9月に作成済み）。使い慣れたツール（Notion等）があればそちらでもよい <a href="https://github.com/" target="_blank" rel="noopener">https://github.com/</a></li></ul>
+        <ul class="materials"><li>Oracle公式チュートリアル「インフラストラクチャの変更」 <a href="https://docs.oracle.com/ja-jp/iaas/developer-tutorials/tutorials/tf-provider/05-summary.htm" target="_blank" rel="noopener">https://docs.oracle.com/ja-jp/iaas/developer-tutorials/tutorials/tf-provider/05-summary.htm</a></li></ul>
       </div>
       <div class="block">
         <div class="block-label">🛠 具体的な手順</div>
-        <ol class="steps"><li><b>作業用のbranchを切る。</b> 11月に続き、変更はmainに直接コミットせずbranch上で行う。<div class="cmd">git checkout -b feature/second-instance</div></li><li><b>拡張演習：</b>WEEK03で構築したCompute（コンピュート）環境に、<code class="inline">variable</code>を使って2台目のインスタンスを追加する（<code class="inline">display_name</code>は1台目と別名にする）。2台目も同じ<code class="inline">VM.Standard.E2.1.Micro</code>とし、1台目と合わせてE2.1.MicroのAlways Free上限（テナンシー全体で最大2台）にちょうど収める。<code class="inline">terraform fmt</code>→<code class="inline">terraform validate</code>で整形・検証したあと、<code class="inline">terraform plan</code>で追加分の差分だけが出ることを確認してから<code class="inline">apply</code>する。</li><li>動作確認ができたら、Always Free枠を使い切らないよう2台目は<code class="inline">terraform destroy</code>で削除しておく（variable定義自体はコードに残してOK）。</li><li><b>branch上でcommitし、pushする。</b><div class="cmd">git add .
-git commit -m "Add second instance variable"
-git push -u origin feature/second-instance</div>このbranchのPull Request作成・レビュー・mainへのmergeは、1月以降にあらためて扱う。</li><li>この1ヶ月でつまずいた点を3つ書き出す。</li><li>「①今週学んだこと ②つまずいた点 ③来週への持ち越し」の3つの見出しで、5〜10行程度の箇条書きメモを作る（文章として整える必要はない）。<code class="inline">study-notes</code>リポジトリに<code class="inline">2026-12-terraform-review.md</code>として保存し、pushする。</li></ol>
+        <ol class="steps"><li>PowerShell（またはコマンドプロンプト）を開く（スタートメニューで「PowerShell」と検索して起動。普段VS Codeを使っているなら内蔵のターミナル機能でもよい）。作業フォルダ（<code class="inline">cd $env:USERPROFILE\oci-learning-log</code>）に移動してから、以降の操作を行う。</li><li><b>Gitをインストールする（未導入の場合）。</b> PowerShellで<div class="cmd">winget install Git.Git</div>を実行する。インストール後、新しいPowerShellで<code class="inline">git --version</code>が表示されることを確認する。</li><li><b>作業フォルダをGitHubのリポジトリにつなぐ。</b> Terraformコードは9月week4で作成済みの<code class="inline">oci-learning-log</code>リポジトリに置く（新規リポジトリは作らない）。ここまでコードを書いてきた作業フォルダ（<code class="inline">oci-learning-log</code>）の中で、次の3つを順に実行する。<code class="inline">git clone</code>は使わない（別の場所にフォルダができ、<code class="inline">terraform.tfstate</code>が置き去りになるため）。<div class="cmd">git init -b main
+git remote add origin https://github.com/&lt;GitHubユーザー名&gt;/oci-learning-log.git
+git pull origin main --allow-unrelated-histories</div>GitHub上にある9月作成の<code class="inline">README.md</code>が作業フォルダに取り込まれる（すでに別の場所へcloneしてしまった場合は、作業フォルダの中身をすべてcloneしたフォルダへ移し、以降はそのフォルダを作業フォルダとして使う。<code class="inline">terraform.tfstate</code>も忘れずに移す）。</li><li>作業フォルダ直下に<code class="inline">.gitignore</code>を新規作成し、<code class="inline">*.tfstate</code>、<code class="inline">*.tfstate.backup</code>、<code class="inline">terraform.tfvars</code>、<code class="inline">.terraform/</code>を書く。そのうえで、ここまでのコードを最初のpushとしてmainブランチにpushする。<div class="cmd">git add .
+git commit -m "Add VCN and base code"
+git push -u origin main</div></li></ol>
       </div>
       <div class="block">
         <div class="block-label">⚠️ つまずきやすいポイント</div>
-        <div class="warn-box"><ul><li>「読める記事」に仕上げようとすると重くなるので、箇条書きメモで十分。公開は目的ではないので、体裁を整えることに時間をかけすぎないこと。</li></ul></div>
+        <div class="warn-box"><ul><li><code class="inline">git pull</code>で「refusing to merge unrelated histories」と出たら、<code class="inline">--allow-unrelated-histories</code>の付け忘れ。<code class="inline">git push</code>が「rejected」になる場合は、先に<code class="inline">git pull origin main --allow-unrelated-histories</code>を実行していない可能性が高い。</li><li>初回の<code class="inline">git push</code>時、ブラウザが自動で開いてGitHubへのログインを求められることがある（Git Credential Managerという仕組み）。エラーではないので、そのままブラウザ側でログイン・許可すればよい。</li></ul></div>
       </div>
       <div class="block">
         <div class="block-label">✅ 成果物</div>
-        <label class="deliverable" data-key="w4"><input type="checkbox"><span class="dtext">拡張演習のTerraformコード（variableで2台目インスタンス追加分。oci-learning-logリポジトリの feature/second-instance branchにpush）と学びメモ（study-notesリポジトリに5〜10行程度の箇条書きで保存、非公開でOK）</span></label>
-        
+        <label class="deliverable" data-key="w4"><input type="checkbox"><span class="dtext">Terraformコード一式（oci-learning-logリポジトリにpush）</span></label>
         <details class="sample-box">
           <summary>💡 サンプルを見る</summary>
-          <div class="sample-content"><p>学びメモの例（5〜10行程度でOK、study-notesリポジトリの<code class="inline">2026-12-terraform-review.md</code>にそのままコピーして使ってOKです）：</p>
-<pre>■ 今週学んだこと
-・terraform planとapplyの違いを実際に手を動かして理解できた
-・state管理のtfstateファイルの中身を初めて見た。JSON形式で管理されていることが分かった
-
-■ つまずいた点
-・data sourceの書き方で最初エラーが出た → 公式ドキュメントのサンプルをそのままコピーしたら解決
-
-■ 来週への持ち越し
-・Computeまで一気通貫で構築する演習をもう一度やって手に馴染ませたい</pre>
-</div>
+          <div class="sample-content"><p>この時点でのフォルダ構成の例：</p>
+<pre>oci-learning-log/
+├── README.md             (9月に作成。pullで取り込まれる)
+├── main.tf
+├── provider.tf
+├── variables.tf
+├── outputs.tf
+├── terraform.tfvars      (Gitには含めない)
+└── .gitignore</pre>
+<p><code class="inline">.gitignore</code>の中身の例：</p>
+<pre>*.tfstate
+*.tfstate.backup
+.terraform/
+terraform.tfvars</pre></div>
         </details>
       </div>
       <div class="block">
         <div class="block-label">🧭 到達判定</div>
-        <div class="criteria-box"><ul><li>variableを使った拡張演習の差分をplanで確認できる</li><li>10〜12月の学習内容を自分の言葉で振り返り、言語化できる</li></ul></div>
+        <div class="criteria-box"><ul><li>.gitignoreに何を含めるべきか、その理由とともに説明できる</li><li>git add→commit→pushの一連の流れを自分で実行できる</li></ul></div>
       </div>
-    </div>
+    <div class="block"><div class="block-label saa-label">📘 並行タスク：SAA-C03 座学ロードマップ（基本1〜1.5h、Black Belt週は最大2h程度が目安）</div><div class="saa-block"><div class="saa-theme"><span class="saa-week-num">Week 16</span>監視・運用＋総合設計</div><table class="saa-breakdown"><tr><th style="width:64px">時間配分</th><th>学習内容</th></tr><tr><td class="time">30分</td><td>CloudWatch／CloudTrail／AWS Config／SNS通知</td></tr><tr><td class="time">25分</td><td>AWS Backup／障害検知／ログ・監査／運用上の可視化</td></tr><tr><td class="time">+15分</td><td>Migration／Data Transfer（DMS／DataSync／Storage Gateway／Snow Family、概要）</td></tr></table><div class="saa-sub">比較・判断軸（20分）</div><ul class="saa-req"><li>総合設計：要件 → 制約 → 候補サービス → 比較 → 適切なサービス選択 → アーキテクチャ</li><li>セキュリティ・可用性・高性能・コスト・運用負荷を同時に考え、単一サービスではなく複数サービスを組み合わせて設計する</li><li>DMS vs DataSync vs Storage Gateway vs Snow Family（移行・転送手段の使い分け）</li></ul><div class="saa-sub">典型要件</div><ul class="saa-req"><li>障害を早期検知し、通知したい → CloudWatch + SNS等</li><li>APIやコンソール操作などの監査証跡を残したい → CloudTrail</li><li>AWSリソースの設定変更やコンプライアンスを確認したい → AWS Config</li><li>バックアップを一元管理したい → AWS Backup</li><li>データベースをAWSへ移行したい → AWS DMS</li><li>オンプレミスとAWS間で大量のファイルを転送・同期したい → AWS DataSync</li><li>オンプレミス環境からS3等のクラウドストレージへ接続したい → AWS Storage Gateway</li><li>大量データを物理デバイスで移行したい → AWS Snow Family</li></ul><div class="saa-goal"><b>到達目標：</b>これまで学習した主要サービスと設計判断を統合し、複数の制約を持つ要件に対して、適切なAWSアーキテクチャを説明できる状態を目指す。あわせて、オンプレミスからAWSへの主な移行・転送手段を要件から選択できるようにする。</div><div class="saa-material"><b>使う教材（直接リンク）</b><ul class="materials"><li>① <a href="https://skillbuilder.aws/learn/53VSXZ83QZ/domain-2-review-aws-certified-solutions-architect--associate-saac03--/U3N35ZFVGR?parentId=5ES5T3BM13" target="_blank" rel="noopener">SAA-C03 Exam Prep Plan — Domain 2 Review（Resilient Architectures）</a>／<a href="https://skillbuilder.aws/learn/HGQZF26N6R/exam-prep-summary-aws-certified-solutions-architect--associate-saac03--/KFS7B72AQF?parentId=5ES5T3BM13" target="_blank" rel="noopener">Exam Prep Summary</a>（今週のテーマに関連するSAA-C03の要求事項を確認するための補助教材／AWS Skill Builder・Exam Prep／監視・運用・総合設計に関する部分、および総整理のSummaryを確認）</li><li>② <a href="https://pages.awscloud.com/rs/112-TZM-766/images/AWS-Black-Belt_2026_AmazonCloudWatch_Part1_MetricsAlarms_0526_v1.pdf" target="_blank" rel="noopener">AWS Black Belt: Amazon CloudWatch Part1 Observability の基本・メトリクス・アラーム編（PDF）</a></li><li>③ <a href="https://pages.awscloud.com/rs/112-TZM-766/images/20210119_AWSBlackbelt_CloudTrail.pdf" target="_blank" rel="noopener">AWS Black Belt: AWS CloudTrail（PDF）</a></li></ul></div><div class="saa-blackbelt"><span class="bb-level optional">Black Belt: 必要なら</span>監視・運用系サービス（CloudWatch、CloudTrail等）で分からない用語が出た場合のみPDFを参照する。</div></div></div></div>
 
     <footer>
-      2026年度 SESインフラエンジニア育成ロードマップ（コースB：OCI限定コース（AWS資格を目指さない））｜チェックボックスの状態はこのブラウザに保存され、次回このページを開いたときも復元されます（進捗管理はPlannerで行ってください）
+      2026年度 SESインフラエンジニア育成ロードマップ（コースA：AWS資格（SAA）取得コース）｜チェックボックスの状態はこのブラウザに保存され、次回このページを開いたときも復元されます（進捗管理はPlannerで行ってください）
     </footer>
   </main>
 </div>
 <script>
 (function() {
-  const STORAGE_KEY = 'roadmap-checklist:courseB-2026-12';
+  const STORAGE_KEY = 'roadmap-checklist:courseA-2026-12';
   let storageAvailable = true;
   let saved = {};
   try {
